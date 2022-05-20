@@ -14,8 +14,10 @@ class MainController
     {
         $this->loader = new FilesystemLoader( ROOT.'/templates');
         $this->twig = new Environment($this->loader, [
+            'debug' => true,
             'cache' => false,
         ]);
+        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
     }
 
     public function index()

@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+	<h1>
+		page d'inscription
+	</h1>
+
+
+	<form action="index.php?path=registration/register" method="POST">
+
+		<div>
+
+			<label for="nom">nom</label>
+			<input required type="text" name="nom" id="">
+		</div>
+		<div>
+			<label for="email">email</label>
+			<input type="email" name="email">
+		</div>
+
+		<button type="submit">
+			enregister</button>
+
+	</form>
+
+{% endblock %}

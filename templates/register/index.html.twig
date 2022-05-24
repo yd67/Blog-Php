@@ -11,18 +11,36 @@
 		page d'inscription
 	</h1>
 
+	<pre>
+		{{ dump(session) }}
+	</pre>
+    {% if session.error is defined %} 	
+		<div style="color:red;">
+			{{session.error}}  
+		</div>
+	{% endif %}
 
-	<form action="index.php?path=registration/register" method="POST">
+	<form action="index.php?path=registration/register" method="POST" enctype="multipart/form-data">
 
 		<div>
-
-			<label for="nom">nom</label>
-			<input required type="text" name="nom" id="">
+			<label for="name">Nom <span style="color:red;">*</span></label>
+			<input required type="text" name="name" >
 		</div>
 		<div>
-			<label for="email">email</label>
-			<input type="email" name="email">
+			<label for="first_name">Prénom <span style="color:red;">*</span></label>
+			<input required type="text" name="first_name">
 		</div>
+		<div>
+			<label for="email">email <span style="color:red;">*</span> </label>
+			<input required type="email" name="email">
+		</div>
+		<div>
+			<label for="password">mot de passe <span style="color:red;">*</span></label>
+			<input required type="password" name="password">
+		</div>
+		<div><label for="file">photo de profil</label></div>
+		<div><input type="file" name="file"></div>
+		<br>
 
 		<button type="submit">
 			enregister</button>

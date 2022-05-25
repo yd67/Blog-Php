@@ -11,40 +11,44 @@
 		page d'inscription
 	</h1>
 
-	<pre>
-		{{ dump(session) }}
-	</pre>
     {% if session.error is defined %} 	
 		<div style="color:red;">
 			{{session.error}}  
 		</div>
 	{% endif %}
 
-	<form action="index.php?path=registration/register" method="POST" enctype="multipart/form-data">
+	<form action="index.php?path=registration/index" method="POST" enctype="multipart/form-data">
 
 		<div>
 			<label for="name">Nom <span style="color:red;">*</span></label>
-			<input required type="text" name="name" >
+			<input type="text" name="name"
+			{% if session.info.name is defined  %} value="{{session.info.name}}" {% endif %}>
+
 		</div>
 		<div>
 			<label for="first_name">Prénom <span style="color:red;">*</span></label>
-			<input required type="text" name="first_name">
+			<input  type="text" name="first_name"
+			{% if session.info.firstName is defined  %} value="{{session.info.firstName}}" {% endif %}>
 		</div>
 		<div>
 			<label for="email">email <span style="color:red;">*</span> </label>
-			<input required type="email" name="email">
+			<input  type="email" name="email"
+			{% if session.info.email is defined  %} value="{{session.info.email}}" {% endif %}>
 		</div>
 		<div>
 			<label for="password">mot de passe <span style="color:red;">*</span></label>
-			<input required type="password" name="password">
+			<input type="password" name="password">
 		</div>
 		<div><label for="file">photo de profil</label></div>
 		<div><input type="file" name="file"></div>
 		<br>
 
-		<button type="submit">
-			enregister</button>
+		<button type="submit">enregister</button>
 
 	</form>
+
+	<pre>
+		{{ dump(data) }}
+	</pre>
 
 {% endblock %}

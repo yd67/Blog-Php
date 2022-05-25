@@ -13,87 +13,101 @@ class RegistrationController extends MainController
     public function index()
     {
         unset($_SESSION['error']);
+        
+        if (!empty($_POST)) {
+
+            $name = htmlspecialchars($_POST['name']) ;
+            $firstName = htmlspecialchars($_POST["first_name"]);
+            $email = htmlspecialchars($_POST['email']);
+            $pass = htmlspecialchars($_POST['password']);
+            $role = 'ROLE_USER';
+            $file = $_FILES['file'] ;
+
+            $_SESSION['info'] =  [
+                    'name' => $name ,
+                    'firstName' => $firstName,
+                    'email' => $email
+                ];
+
+            if (empty($name)) {
+                $_SESSION['error'] = 'veillez rensseigner votre nom ' ;
+                header('Location: registration');
+                die();
+            }
+            if (empty($firstName)) {
+                $_SESSION['error'] = 'veillez rensseigner votre prénom ';
+                header('Location: registration');
+                die();
+            }
+            if (empty($email)) {
+                $_SESSION['error'] = 'veillez rensseigner une adresse email ' ;
+                header('Location: registration');
+                die();
+            }
+
+            $userRepo = new UserRepository ;
+            $user = $userRepo->findBy('email',$email);
+
+            if (!empty($user)) {
+                $_SESSION['error'] = 'adresse email non disponible' ;
+                header('Location: registration');
+                die();
+            }
+            if (empty($pass)) {
+                $_SESSION['error'] = 'le mot de passe ne doit pas etre vide ' ;
+                header('Location: registration');
+                die();
+            }
+        
+            // hash password  
+            $password = password_hash($pass,PASSWORD_DEFAULT) ;
+
+            // default avatar 
+            $imgName='default.png';
+
+            if (!empty($file)) {
+                $extention = explode('.',$file['name']) ;
+                $extention = $extention[1];
+                $tmp_name = $file['tmp_name'] ;
+                
+                $imgName = 'profil-'.time().'.'.$extention ;
+                $path_dest = ROOT.'/public/upload/user/'.$imgName ;
+
+                move_uploaded_file($tmp_name,$path_dest);
+            }
+
+            // create the user
+            $user = new User ;
+            $user->setName($name);
+            $user->setFirstName($firstName);
+            $user->setRole($role);
+            $user->setEmail($email);
+            $user->setPassword($password);
+            $user->setImage($imgName);
+    
+            $userRepo = new UserRepository ;
+            $userRepo->createUser($user) ;
+
+            // redirection to login 
+            unset($_SESSION['error']);
+            unset($_SESSION['info']);
+
+            $_SESSION['success'] = 'user a bien été créer' ;
+            
+
+        }
+
 
         $this->twig->display('register/index.html.twig',[
-          'errors' => $this->errors
+
         ]);
 
     }
 
+
     public function register()
     {  
 
-        var_dump($_POST); var_dump($_FILES);
-
-        $name = htmlspecialchars($_POST['name']) ;
-        $firstName = htmlspecialchars($_POST["first_name"]);
-        $email = htmlspecialchars($_POST['email']);
-        $role = 'ROLE_USER';
-        $file = $_FILES['file'] ;
-
-        if (empty($name)) {
-            $_SESSION['error'] = 'veillez rensseigner votre nom ' ;
-            header('Location: registration');
-            die();
-        }
-        if (empty($firstName)) {
-            $_SESSION['error'] = 'veillez rensseigner votre prénom ';
-            header('Location: registration');
-            die();
-        }
-        if (empty($_POST['email'])) {
-            $_SESSION['error'] = 'veillez rensseigner une adresse email ' ;
-            header('Location: registration');
-            die();
-        }
-        if (empty($_POST['password'])) {
-            $_SESSION['error'] = 'le mot de passe ne doit pas etre vide ' ;
-            header('Location: registration');
-            die();
-        }
-        
-        $userRepo = new UserRepository ;
-        $user = $userRepo->findBy('email',$email);
-
-    
-        if (!empty($user)) {
-            $_SESSION['error'] = 'adresse email non disponible' ;
-            header('Location: registration');
-            die();
-        }
-        
-           
-            // // hash password  
-            // $password = password_hash($_POST['pass'],PASSWORD_DEFAULT) ;
-
-
-            // if (empty($error)) {
-            // // create the user
-            // $user = new User ;
-            // $user->setName($name);
-            // $user->setFirstName($firstName);
-            // $user->setRole($role);
-            // $user->setEmail($email);
-            // $user->setPassword($password);
-            // $user->setImage($img);
-    
-            // $userRepo = new UserRepository ;
-            // $userRepo->createUser($user) ;
-             //}
-
-            var_dump('enregistrer');
-    
-            var_dump($_FILES);
-         
-       // else{
-            
-        //     array_push($this->errors,'le else');
-        //     $_SESSION['error'] = 'des champs sont vide' ;
-        //     header('Location: registration');
-        // }
-
-         
-        
 
     }
 

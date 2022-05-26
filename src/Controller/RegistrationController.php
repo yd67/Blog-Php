@@ -8,8 +8,6 @@ use App\Repo\UserRepository;
 class RegistrationController extends MainController
 {
 
-    protected $errors = [] ;
-
     public function index()
     {
         unset($_SESSION['error']);
@@ -88,12 +86,12 @@ class RegistrationController extends MainController
             $userRepo = new UserRepository ;
             $userRepo->createUser($user) ;
 
-            // redirection to login 
+            // delete message erro and info of user
             unset($_SESSION['error']);
             unset($_SESSION['info']);
 
-            $_SESSION['success'] = 'user a bien été créer' ;
-            
+            $_SESSION['success'] = 'Votre compte a bien été créer' ;
+            header('Location: login');
 
         }
 

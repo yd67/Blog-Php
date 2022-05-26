@@ -2,6 +2,7 @@
 
 namespace App\Controller ;
 
+use App\Model\User;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -18,10 +19,13 @@ class MainController
             'cache' => false,
         ]);
         $this->twig->addExtension(new \Twig\Extension\DebugExtension());
+        
+        $this->twig->addGlobal('session', $_SESSION);
     }
 
     public function index()
     {
+        
         var_dump('le main controller');
     }
 
@@ -29,7 +33,7 @@ class MainController
     {
 
         $this->twig->display('error404.html.twig',[
-            
+
         ]);
 
     }

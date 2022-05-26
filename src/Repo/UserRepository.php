@@ -6,7 +6,7 @@ use App\Db\Database;
 use PDO;
 use App\Model\User;
 
-class UserRepository extends Database
+class UserRepository extends MainRepository
 {
     public function createUser(User $user)
     {
@@ -25,21 +25,6 @@ class UserRepository extends Database
         $req->execute();
 
     }
-
-    public function findBy(string $criteria,$value)
-    {
-        $sql = " SELECT * FROM user WHERE {$criteria} = :{$criteria}";
-
-        $pdo = $this->getPdo();
-        $req = $pdo->prepare($sql);
-        $req->bindValue($criteria,$value,PDO::PARAM_STR);
-       
-        $req->execute();
-        $req->setFetchMode(PDO::FETCH_CLASS, 'User');
-        $result = $req->fetch();
-
-        return $result ;    
-
-    }
+    
  
 }

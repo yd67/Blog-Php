@@ -5,5 +5,16 @@
 		<a href="index.php">home</a>
 		<a href="contact">contact</a>
 		<a href="registration">inscription</a>
+		{% if session.user is defined %} 
+		 <a href="index.php?path=login/logout">déconexion</a>
+		{% else %}
+		 <a href="login">se connecter</a>
+		{% endif %}
 	</h3>
+
+{% if session.user is defined %}
+	<div>
+		<h2>Bienevue {{session.user.firstName}} {{session.user.name}} </h2>
+	</div>
+{% endif %}
 </div>

@@ -39,6 +39,11 @@ class Router
 
         if (!empty($param[0])) {
             $controller = 'App\Controller\\'.ucfirst($param[0].'Controller') ;
+            $mot = "Admin" ;
+              // Test if the string contains the word "Admin"
+                if(strpos($controller, $mot) !== false){
+                    $controller = 'App\Controller\Admin\\'.ucfirst($param[0].'Controller') ;
+                }
         }
         
         if (!empty($param[1])) {
@@ -58,6 +63,7 @@ class Router
 
         }else {
            $class = new MainController ;
+           var_dump($controller);
            $class->page404();
         }
 

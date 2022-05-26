@@ -7,7 +7,7 @@ class ContactController extends MainController
 
     public function index()
     {
-
+       
        $this->twig->display('contact/index.html.twig',[
         'test' => 'test contact'
     ]);

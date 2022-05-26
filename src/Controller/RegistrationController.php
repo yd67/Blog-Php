@@ -9,7 +9,7 @@ class RegistrationController extends MainController
 {
 
     public function index()
-    {
+    { 
         unset($_SESSION['error']);
         
         if (!empty($_POST)) {
@@ -44,7 +44,7 @@ class RegistrationController extends MainController
             }
 
             $userRepo = new UserRepository ;
-            $user = $userRepo->findBy('email',$email);
+            $user = $userRepo->findBy('user','email',$email);
 
             if (!empty($user)) {
                 $_SESSION['error'] = 'adresse email non disponible' ;
@@ -83,10 +83,9 @@ class RegistrationController extends MainController
             $user->setPassword($password);
             $user->setImage($imgName);
     
-            $userRepo = new UserRepository ;
             $userRepo->createUser($user) ;
 
-            // delete message erro and info of user
+            // delete error message  and info of user
             unset($_SESSION['error']);
             unset($_SESSION['info']);
 

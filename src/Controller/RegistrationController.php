@@ -63,6 +63,7 @@ class RegistrationController extends MainController
             // default avatar 
             $imgName='default.png';
 
+            // treatment of images
             if (!empty($file)) {
                 $extention = explode('.',$file['name']) ;
                 $extention = $extention[1];

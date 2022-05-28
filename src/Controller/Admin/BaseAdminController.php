@@ -2,11 +2,15 @@
 
 namespace App\Controller\Admin ;
 
-class BaseAdminController 
+use App\Controller\MainController;
+
+class BaseAdminController extends MainController
 {
 
     public function __construct()
     {
+        parent::__construct() ;
+
         if (empty($_SESSION['user'])){    
             echo('acces refuser') ;
 
@@ -14,14 +18,12 @@ class BaseAdminController
             die();
         }
         if ($_SESSION['user']['role'] != 'ROLE_ADMIN') {
-            echo('acces resfuser pas le bon role');
+            echo('acces refuser pas le bon role');
             
             // faire une redirection
             die();
         }
     }
 
-    public function index(){
-        echo'le bon role';
-    }
+    
 }

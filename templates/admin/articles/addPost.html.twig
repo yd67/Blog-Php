@@ -1,0 +1,21 @@
+{% extends "admin/baseAdmin.html.twig" %}
+
+{% block title %}Blog - ajout articles {% endblock %}
+
+
+{% block body %}
+
+<h1 class="text-center"> ajout Articles</h1>
+
+
+<div class="container">
+    <form action="adminPost/addpost" method="POST">
+
+    <input class="form-control" type="text" name="title">
+
+ <button type="submit" class="btn btn-success"> ajouter</button>
+    </form>
+</div>
+
+
+{% endblock %}

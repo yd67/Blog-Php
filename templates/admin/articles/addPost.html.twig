@@ -1,21 +1,45 @@
 {% extends "admin/baseAdmin.html.twig" %}
 
-{% block title %}Blog - ajout articles {% endblock %}
-
+{% block title %}Blog - ajout articles{% endblock %}
 
 {% block body %}
 
-<h1 class="text-center"> ajout Articles</h1>
+	<h1 class="text-center">
+		ajout Articles</h1>
 
+	<form action="index.php?path=adminPost/addPost" method="POST">
+		<div class="form-group">
+			<label for="title">titre</label>
+			<input type="text" class="form-control" name="title">
+		</div>
+		<div class="form-group">
+			<label for="chapo">Chapo</label>
+			<input class="form-control" type="text" name="chapo">
+		</div>
+		<div class="form-group">
+			<label for="auteur">Auteur</label>
+			<input class="form-control" type="text" name="auteur">
+		</div>
+		<div class="form-group">
+			<label for="content">Contenue</label>
+			<textarea class="form-control" id="Article_editor" name="content" rows="3"></textarea>
+		</div>
+		<div class="form-group pt-2">
+			<div>
+				<label for="file">image a la une
+				</label>
+			</div>
+			<input type="file" class="form-control-file" name="file">
+		</div>
 
-<div class="container">
-    <form action="adminPost/addpost" method="POST">
+		<div class="form-check pt-3">
+			<input type="checkbox" class="form-check-input" name="isPublished">
+			<label class="form-check-label" for="isPublished">Metre l'article en ligne</label>
+		</div>
 
-    <input class="form-control" type="text" name="title">
-
- <button type="submit" class="btn btn-success"> ajouter</button>
-    </form>
-</div>
-
+		<div class="pt-5">
+			<button type="submit" class="btn btn-primary">Ajouter</button>
+		</div>
+	</form>
 
 {% endblock %}

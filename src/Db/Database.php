@@ -9,7 +9,7 @@ class Database
     private $db_host = 'localhost';
     private $db_user = 'root' ;
     private $db_pass = '' ;
-    private $db_name = '01expressfood';
+    private $db_name = '01Blogoc';
     private $pdo ;
 
     public function getPdo() 
@@ -20,6 +20,7 @@ class Database
                 $this->db_user ,$this->db_pass,
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
+            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }
 
         return $this->pdo ;

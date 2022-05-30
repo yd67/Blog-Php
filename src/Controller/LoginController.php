@@ -32,7 +32,8 @@ class LoginController extends MainController
             if (password_verify($pass, $user['password'])) {
                 $_SESSION['user'] = $user ;
                 if ($user['role' === 'ROLE_ADMIN']) {
-                    // redirection page admin 
+                    header('Location: adminDashboard');
+                    die();
                 }
                 header('Location: home');
 

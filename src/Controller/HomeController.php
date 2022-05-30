@@ -9,8 +9,7 @@ class HomeController extends MainController
 
     public function index()
     {
-        $db = new Database();
-        $db = $db->pdoQuery("SELECT * FROM `livreur` ");
+        
         $test = [
            0 => [
                 'nom' => 'gerard',
@@ -26,7 +25,6 @@ class HomeController extends MainController
 
         $this->twig->display('home/index.html.twig',[
             'perso' => $test,
-            'db' => $db
         ]);
     }
 

@@ -10,11 +10,14 @@
 		{% else %}
 		 <a href="login">se connecter</a>
 		{% endif %}
+		{% if session.user is defined and session.user.role == 'ROLE_ADMIN' %}
+		<a href="adminDashboard">Dashboard</a>
+		{% endif %}
 	</h3>
 
 {% if session.user is defined %}
 	<div>
-		<h2>Bienevue {{session.user.firstName}} {{session.user.name}} </h2>
+		<h2>Bienvenue {{session.user.firstName}} {{session.user.name}} </h2>
 	</div>
 {% endif %}
 </div>

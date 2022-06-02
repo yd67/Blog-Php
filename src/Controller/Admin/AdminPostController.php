@@ -13,7 +13,13 @@ class AdminPostController extends BaseAdminController
 
     public function index()
     {
-        $this->twig->display('admin/articles/index.html.twig', []);
+        
+        $repo = new PostRepository;
+        $posts = $repo->findAll();
+
+        $this->twig->display('admin/articles/index.html.twig',[
+            'posts' => $posts
+        ]);
     }
 
     public function addPost()

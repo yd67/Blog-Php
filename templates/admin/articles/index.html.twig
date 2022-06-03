@@ -17,6 +17,7 @@
 				<th scope="col">Titre</th>
 				<th scope="col">Auteur</th>
 				<th scope="col">Date creation</th>
+				<th scope="col">Date Modification</th>
 				<th scope="col">En ligne
 				</th>
 				<th scope="col">Action</th>
@@ -29,7 +30,8 @@
 					<th scope="row"><img src="../public/upload/post/{{p.image}}" width="100px" height="60px" alt=""></th>
 					<td scope="row">{{p.title}}</td>
 					<td scope="row">{{p.auteur}}</td>
-					<td scope="row">{{p.created_at|date("d/m/Y", "Europe/Paris")}}</td>
+					<td scope="row">{{p.created_at|date("d-m-Y H:i") }}</td>
+					<td scope="row">{{p.updated_at|date("d-m-Y H:i") }}</td>
 					<td scope="row">
 						{% if p.isPublished == true %}oui
 						{% else %}
@@ -37,8 +39,8 @@
 						{% endif %}
 					</td>
 					<td scope="row">
-						<a href="">modifier</a>
-						<a href="">supprimer</a>
+						<a href="index.php?path=adminPost/updatePost/{{p.id}}">modifier</a>
+						<a href="index.php?path=adminPost/deletePost/{{p.id}}">supprimer</a>
 					</td>
 				{% endfor %}
 			</tr>

@@ -48,4 +48,26 @@ class MainRepository extends Database
         $req->execute($valeurs);
     }
 
+    public function update(string $table,int $id , $data)
+    {
+        $sqlReplace = "";
+        $i = 1 ;
+
+        foreach ($data as $key => $value) {
+            $virgule = "," ;
+            if ($i == count($data)) {
+                $virgule = "" ;
+            }
+            $sqlReplace .= "{$key} = :{$key}{$virgule} " ;
+            $i++ ;
+        }
+        $data['id'] = $id ;
+
+        $sql = "UPDATE {$table} SET {$sqlReplace} WHERE id = :id " ;
+        $pdo = $this->getPdo();        
+        $req = $pdo->prepare($sql);
+
+        $req->execute($data);
+    }
+
 }

@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blog details - {% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+<div>
+<h1> {{post.title}} </h1>
+
+ <div><img class="card-img-top" style="height=150px; width=250px"  src="../public/upload/post/{{post.image}}" alt="Card image cap">
+ </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Blog list - {% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+<h1> page listing des post </h1>
+
+<div class="col-8">
+<div class="card-group">
+{% for p in post %}
+  <div class="card m-4">
+   <a href="index.php?path=post/details/{{p.id}}"><img class="card-img-top" src="../public/upload/post/{{p.image}}" alt="Card image cap"></a> 
+    <div class="card-body">
+      <h5 class="card-title">{{p.title}}</h5>
+      <p class="card-text">{{p.chapo}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{p.updated_at|date('d/m/Y')}}</small>
+    </div>
+  </div>
+  
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

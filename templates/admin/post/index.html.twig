@@ -30,8 +30,8 @@
 					<th scope="row"><img src="../public/upload/post/{{p.image}}" width="100px" height="60px" alt=""></th>
 					<td scope="row">{{p.title}}</td>
 					<td scope="row">{{p.auteur}}</td>
-					<td scope="row">{{p.created_at|date("d-m-Y H:i") }}</td>
-					<td scope="row">{{p.updated_at|date("d-m-Y H:i") }}</td>
+					<td scope="row">{{p.created_at }}</td>
+					<td scope="row">{{p.updated_at }}</td>
 					<td scope="row">
 						{% if p.isPublished == true %}oui
 						{% else %}

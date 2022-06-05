@@ -1,17 +1,18 @@
-<div class="row">
+<div class="row p-3 mb-2 bg-dark text-white">
 	<h3>
 		je suis le header
 		
 		<a href="index.php">home</a>
-		<a href="contact">contact</a>
-		<a href="registration">inscription</a>
+		<a href="index.php?path=contact">contact</a>
+		<a href="index.php?path=post">Blog</a>
+		<a href="index.php?path=registration">inscription</a>
 		{% if session.user is defined %} 
 		 <a href="index.php?path=login/logout">déconexion</a>
 		{% else %}
-		 <a href="login">se connecter</a>
+		 <a href="index.php?path=login">se connecter</a>
 		{% endif %}
 		{% if session.user is defined and session.user.role == 'ROLE_ADMIN' %}
-		<a href="adminDashboard">Dashboard</a>
+		<a href="index.php?path=adminDashboard">Dashboard</a>
 		{% endif %}
 	</h3>
 

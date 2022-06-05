@@ -3,38 +3,45 @@
 namespace App\Repo ;
 
 use App\Db\Database;
+use App\Model\Post;
 
 class PostRepository extends MainRepository
 {
+    
 
+    /**
+     * return array of objet post 
+     *
+     * @return array 
+     */
     public function findAll()
     {
        $result =  $this->pdoQuery(" SELECT * FROM post "); 
-       return $result ;
+       $value = [] ;
+
+       foreach ($result as $r) { 
+        $post = new Post();
+        $objet =  $post->hydrate($r);
+        array_push($value,$objet);
+       }
+       
+       return $value ;
     }
 
-    
-    public function update(int $id , $data)
+    public function getPublished()
     {
-        $sqlReplace = "";
-        $i = 1 ;
+       $result =  $this->pdoQuery(" SELECT * FROM `post` WHERE `isPublished` = true ORDER BY `created_at` DESC "); 
+        $value = [] ;
 
-        foreach ($data as $key => $value) {
-            $virgule = "," ;
-            if ($i == count($data)) {
-                $virgule = "" ;
-            }
-            $sqlReplace .= "{$key} = :{$key}{$virgule} " ;
-            $i++ ;
-        }
-        $data['id'] = $id ;
-
-        $sql = "UPDATE post SET {$sqlReplace} WHERE id = :id " ;
-        $pdo = $this->getPdo();        
-        $req = $pdo->prepare($sql);
-
-        $req->execute($data);
+       foreach ($result as $r) { 
+        $post = new Post();
+        $objet =  $post->hydrate($r);
+        array_push($value,$objet);
+       }
+       
+       return $value ;
     }
+
 
     public function delete(int $id)
     {

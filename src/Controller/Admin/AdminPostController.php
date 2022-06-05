@@ -23,7 +23,7 @@ class AdminPostController extends BaseAdminController
     {
         $posts = $this->postRepo->findAll();
 
-        $this->twig->display('admin/articles/index.html.twig', [
+        $this->twig->display('admin/post/index.html.twig', [
             'posts' => $posts
         ]);
     }
@@ -67,7 +67,7 @@ class AdminPostController extends BaseAdminController
                 $_SESSION['error'] = 'un ou plusieurs des champs obligatoires sont vide ';
             }
         }
-        $this->twig->display('admin/articles/addPost.html.twig', [
+        $this->twig->display('admin/post/addPost.html.twig', [
             'info' => $info,
         ]);
     }
@@ -79,12 +79,10 @@ class AdminPostController extends BaseAdminController
 
         if (!empty($_POST)) {
 
-           
-
             $timeZone = new DateTimeZone('Europe/Paris');
             $date = new DateTime();
             $date->setTimezone($timeZone);
-            $d =  $date->format('Y-m-d H:i:s.u');
+            $d =  $date->format('Y-m-d H:i:s');
 
             $postUpdate = $_POST;
             $postUpdate['updated_at'] = $d;
@@ -101,13 +99,13 @@ class AdminPostController extends BaseAdminController
                 $postUpdate['image'] = $imgName ;
             }
 
-            $this->postRepo->update($arg, $postUpdate);
+            $this->postRepo->update('post',$arg, $postUpdate);
 
             header('Location: index.php?path=adminPost');
             die();
         }
 
-        $this->twig->display('admin/articles/updatePost.html.twig', [
+        $this->twig->display('admin/post/updatePost.html.twig', [
             'post' => $post,
         ]);
     }

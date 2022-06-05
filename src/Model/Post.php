@@ -5,7 +5,7 @@ namespace App\Model;
 use DateTime;
 use DateTimeZone;
 
-class Post
+class Post extends Model
 {
 
     protected $id;
@@ -106,7 +106,7 @@ class Post
         $date = new DateTime();
         $date->setTimezone($timeZone);
 
-        $this->created_at = $date->format('Y-m-d H:i:s.u');
+        $this->created_at = $date->format('Y-m-d H:i:s');
 
         return $this;
     }
@@ -124,7 +124,7 @@ class Post
      *
      * @return  self
      */
-    public function setUpdated_at(DateTime $updated_at)
+    public function setUpdated_at( $updated_at)
     {
         $this->updated_at = $updated_at;
 

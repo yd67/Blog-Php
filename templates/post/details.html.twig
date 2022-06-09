@@ -1,17 +1,94 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Blog details - {% endblock %}
+{% block title %}Blog details -
+{% endblock %}
 
 {% block stylesheets %}{% endblock %}
 
 {% block body %}
 
-<div>
-<h1> {{post.title}} </h1>
+	{# <div>
+	<h1> {{post.title}} </h1>
+	
+	 <div><img class="card-img-top" style="height=150px; width=250px"  src="../public/upload/post/{{post.image}}" alt="Card image cap">
+	 </div>
+	</div> #}
 
- <div><img class="card-img-top" style="height=150px; width=250px"  src="../public/upload/post/{{post.image}}" alt="Card image cap">
- </div>
-</div>
+	<div class="container mt-5">
+		<div class="row justify-centent-center">
+			<div class="d-flex justify-content-center">
+				<div
+					class="col-lg-10 justify-content-center">
+					<!-- Post content-->
+					<article>
+						<!-- Post header-->
+						<header
+							class="mb-4 text-center">
+							<!-- Post title-->
+							<h1 class="fw-bolder mb-1">{{post.title}}</h1>
+							<!-- Post meta content-->
+							<div class="text-muted fst-italic mb-3">derniere modification :
+								{{post.updated_at}}</div>
+							<!-- Post auteur -->
+							<p class="badge bg-secondary text-decoration-none link-light" href="#!">
+								{{post.auteur|upper}}
+							</p>
+						</header>
+						<!-- Preview image figure-->
+						<figure class="col"><img class="img-fluid rounded" src="../public/upload/post/{{post.image}}" alt="..."/></figure>
+						<!-- post chapo-->
+						<section class="mb-5">
+							<div class="d-flex justify-content-center">
+								<p class="fs-5 col-8 mb-4 text-center">
+									{{post.chapo}}
+								</p>
+							</div>
+
+						</section>
+						<!-- Post content-->
+						<section class="mb-5">
+							{{post.content|raw}}
+						</section>
+					</article>
+					<!-- Comments section-->
+					<section class="mb-5 mt-5 pt-5">
+                    <h3 class="fw-bolder">Commentaires :</h3>
+						<div class="card bg-light">
+							<div class="card-body">
+				
+								<!-- Single comment-->
+								{% for c in comment %}
+									
+								<div class="d-flex mb-5">
+									<div class="flex-shrink-0"><img class="rounded-circle" style="width:50px;height:50px" src="../public/upload/user/{{c.image}}" alt="..."/></div>
+									<div class="ms-3">
+										<div class="fw-bold"> {{c.name}} {{c.firstName}} </div>
+										{{c.message}}
+									</div>
+								</div>
+								{% endfor %}
+
+                               
+							</div>
+                             <!-- Comment form-->
+							 {% if session.user is defined %}
+								<form action="index.php?path=post/addComments" method="POST" class="m-4">
+									<textarea class="form-control" rows="3" name="comment" placeholder=" laisser un commentaire !"></textarea>
+									<input type="hidden" name="postId"  value="{{post.id}}">
+                                   <div class="d-flex justify-content-center"><button class="mt-4 btn btn-primary" type="submit">poster</button></div> 
+								</form>
+							{% endif %}
+						</div>
+					</section>
+				</div>
+				<!-- Side widgets-->
+
+			<!-- Categories widget-->
+
+				<!-- Side widget-->
 
 
-{% endblock %}
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

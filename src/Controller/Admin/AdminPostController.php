@@ -61,8 +61,9 @@ class AdminPostController extends BaseAdminController
                     ->setIsPublished($isPublished)
                     ->setCreated_at();
                 $this->postRepo->create('post', $post);
-                header('Location: index.php?path=adminPost');
-                die();
+
+                $this->redirect('adminPost');
+                
             } else {
                 $_SESSION['error'] = 'un ou plusieurs des champs obligatoires sont vide ';
             }
@@ -101,8 +102,7 @@ class AdminPostController extends BaseAdminController
 
             $this->postRepo->update('post',$arg, $postUpdate);
 
-            header('Location: index.php?path=adminPost');
-            die();
+            $this->redirect('adminPost');
         }
 
         $this->twig->display('admin/post/updatePost.html.twig', [
@@ -115,6 +115,6 @@ class AdminPostController extends BaseAdminController
         if (!empty($id)) {
              $this->postRepo->delete($id);
         }
-        header('Location: index.php?path=adminPost');
+        $this->redirect('adminPost');
     }
 }

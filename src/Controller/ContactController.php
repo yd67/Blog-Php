@@ -2,6 +2,8 @@
 
 namespace App\Controller ;
 
+use App\Service\Mailer;
+
 class ContactController extends MainController
 {
 
@@ -13,14 +15,21 @@ class ContactController extends MainController
     ]);
     }
 
-    public function show()
+    public function sendContact()
     {
-        echo('le show du contact') ;
+        if ( !empty($_POST['name']) && !empty( $_POST['email']) && !empty( $_POST['message']) ) {
+            $data = [
+                'name' => htmlentities($_POST['name']),
+                'firstName' => htmlentities($_POST['firstName']),
+                'email' => htmlentities($_POST['email']),
+                'message' => htmlentities($_POST['message']),
+            ];
+
+            $mail = new Mailer ;
+            $mail->contact($data) ;
+
+            $this->redirect('home');
+        }
     }
 
-    public function details($id)
-    {
-        echo('le test'.$id) ; 
-
-    }
 }

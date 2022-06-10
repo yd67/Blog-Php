@@ -24,23 +24,20 @@ class LoginController extends MainController
 
             if (empty($user)) {
                 $_SESSION['error'] = 'Les informations de connexion sont incorrect.' ;
-                header('Location: login');
-                die();
+                $this->redirect('login');
             }
 
             // password verification 
             if (password_verify($pass, $user['password'])) {
                 $_SESSION['user'] = $user ;
                 if ($user['role' === 'ROLE_ADMIN']) {
-                    header('Location: adminDashboard');
-                    die();
+                    $this->redirect('adminDashboard') ;
                 }
-                header('Location: home');
+                $this->redirect('home') ;
 
             } else {
                 $_SESSION['error'] = 'Les informations de connexion sont incorrect.' ;
-                header('Location: login');
-                die();
+                $this->redirect('login') ;
             }
 
         }
@@ -54,6 +51,6 @@ class LoginController extends MainController
     public function logout()
     {
         unset($_SESSION['user']) ;
-        header('Location: login');
+        $this->redirect('login') ;
     }
 }

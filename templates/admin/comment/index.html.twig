@@ -25,9 +25,8 @@
 					<td scope="row">{{c.email}}</td>
 					<td scope="row">{{c.message}}</td>
 					<td scope="row">
-					     <a href="index.php?path=adminComment/acceptComment/{{c.id}}">accepter</a>
-						<a href="">refuser</a>
-						<a href="index.php?path=post/details/{{c.post_id}}">voir article </a>
+					     <a href="index.php?path=adminComment/acceptComment/{{c.id}}">valider</a>
+						<a href="index.php?path=post/details/{{c.post_id}}" target="_blank" >voir article </a>
 					</td>
 				{% endfor %}
 			</tr>

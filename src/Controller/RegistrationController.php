@@ -29,18 +29,15 @@ class RegistrationController extends MainController
 
             if (empty($name)) {
                 $_SESSION['error'] = 'veillez rensseigner votre nom ';
-                header('Location: registration');
-                die();
+                $this->redirect('registration') ;
             }
             if (empty($firstName)) {
                 $_SESSION['error'] = 'veillez rensseigner votre prénom ';
-                header('Location: registration');
-                die();
+                $this->redirect('registration') ;
             }
             if (empty($email)) {
                 $_SESSION['error'] = 'veillez rensseigner une adresse email ';
-                header('Location: registration');
-                die();
+                $this->redirect('registration') ;
             }
 
             $userRepo = new UserRepository;
@@ -48,13 +45,11 @@ class RegistrationController extends MainController
 
             if (!empty($user)) {
                 $_SESSION['error'] = 'adresse email non disponible';
-                header('Location: registration');
-                die();
+                $this->redirect('registration') ;
             }
             if (empty($pass)) {
                 $_SESSION['error'] = 'le mot de passe ne doit pas etre vide ';
-                header('Location: registration');
-                die();
+                $this->redirect('registration') ;
             }
 
             // hash password  
@@ -91,7 +86,7 @@ class RegistrationController extends MainController
             unset($_SESSION['info']);
 
             $_SESSION['success'] = 'Votre compte a bien été créer';
-            header('Location: login');
+            $this->redirect('login') ;
         }
 
 

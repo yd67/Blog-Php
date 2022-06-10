@@ -6,7 +6,36 @@
 
 {% block body %}
 
+<div>
 <h1> page Accueil</h1>
 
+
+<h3> contact </h3>
+
+<form action="index.php?path=contact/sendContact" method="POST">
+
+<div>
+<label for="name"> Nom</label>
+<input type="text" name="name">
+</div>
+
+<div>
+<label for="firstName"> Prenom</label>
+<input type="text" name="firstName">
+</div>
+
+<div>
+<label for="email"> email</label>
+<input type="email" name="email">
+</div>
+
+<div>
+<textarea name="message" cols="30" rows="10"></textarea>
+</div>
+
+<button type="submit" class="btn btn-primary">envoyer</button>
+
+</form>
+</div>
 
 {% endblock %}

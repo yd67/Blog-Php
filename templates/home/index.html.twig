@@ -1,41 +1,63 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block stylesheets %}{% endblock %}
 
 {% block body %}
 
-<div>
-<h1> page Accueil</h1>
+	<div>
+		<h1>
+			page Accueil
+        </h1>
+        
+		<h3>
+			contact
+		</h3>
+        
+		{% if session.contactError is defined %}
+            <div class="alert alert-danger" role="alert">
+				{{session.contactError}}
+            </div>
+		{% endif %}
+        {% if session.contactSuccess is defined %}
+            <div class="alert alert-success" role="alert">
+				{{session.contactSuccess}}
+            </div>
+		{% endif %}
 
+		<form action="index.php?path=contact/sendContact" method="POST">
 
-<h3> contact </h3>
+			<div>
+				<label for="name">
+					Nom</label>
+				<input type="text" name="name" {% if session.contactInfo.name is defined %} value="{{session.contactInfo.name}}" {% endif %}>
+			</div>
 
-<form action="index.php?path=contact/sendContact" method="POST">
+			<div>
+				<label for="firstName">
+					Prenom</label>
+				<input type="text" name="firstName" {% if session.contactInfo.firstName is defined %} value="{{session.contactInfo.firstName}}" {% endif %}>
+			</div>
 
-<div>
-<label for="name"> Nom</label>
-<input type="text" name="name">
-</div>
+			<div>
+				<label for="email">
+					email</label>
+				<input type="email" name="email" {% if session.contactInfo.email is defined %} value="{{session.contactInfo.email}}" {% endif %}>
+			</div>
 
-<div>
-<label for="firstName"> Prenom</label>
-<input type="text" name="firstName">
-</div>
+			<div>
+				<textarea name="message" cols="30" rows="10">
+					{% if session.contactInfo.message is defined  %}
+						{{session.contactInfo.message}}
+					{% endif %}
+				</textarea>
+			</div>
 
-<div>
-<label for="email"> email</label>
-<input type="email" name="email">
-</div>
+			<button type="submit" class="btn btn-primary">envoyer</button>
 
-<div>
-<textarea name="message" cols="30" rows="10"></textarea>
-</div>
-
-<button type="submit" class="btn btn-primary">envoyer</button>
-
-</form>
-</div>
+		</form>
+	</div>
 
 {% endblock %}

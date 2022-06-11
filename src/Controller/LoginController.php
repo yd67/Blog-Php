@@ -29,6 +29,7 @@ class LoginController extends MainController
 
             // password verification 
             if (password_verify($pass, $user['password'])) {
+                unset($user['password']);
                 $_SESSION['user'] = $user ;
                 if ($user['role' === 'ROLE_ADMIN']) {
                     $this->redirect('adminDashboard') ;

@@ -2,7 +2,7 @@
 
 namespace App\Controller ;
 
-use App\Service\Mailer;
+use App\Mail\Mailer;
 
 class ContactController extends MainController
 {
@@ -17,19 +17,27 @@ class ContactController extends MainController
 
     public function sendContact()
     {
+        $_SESSION['contactInfo'] = $_POST ;
+
         if ( !empty($_POST['name']) && !empty( $_POST['email']) && !empty( $_POST['message']) ) {
             $data = [
-                'name' => htmlentities($_POST['name']),
-                'firstName' => htmlentities($_POST['firstName']),
-                'email' => htmlentities($_POST['email']),
-                'message' => htmlentities($_POST['message']),
+                'name' => htmlspecialchars($_POST['name']),
+                'firstName' => htmlspecialchars($_POST['firstName']),
+                'email' => htmlspecialchars($_POST['email']),
+                'message' => htmlspecialchars($_POST['message']),
             ];
 
             $mail = new Mailer ;
             $mail->contact($data) ;
 
-            $this->redirect('home');
+            unset($_SESSION['contactInfo']);
+            unset($_SESSION['contactError']);
+            $_SESSION['contactSuccess'] = 'l\'email a bien été envoyé , nous vous contacterons dans les plus bref delai';
+        }else{
+            $_SESSION['contactError'] = 'veuillez emplir l\'ensemble des champs';
+            unset($_SESSION['contactSuccess']);
         }
+        $this->redirect('home');
     }
 
 }

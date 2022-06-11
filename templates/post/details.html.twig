@@ -28,7 +28,10 @@
 							<h1 class="fw-bolder mb-1">{{post.title}}</h1>
 							<!-- Post meta content-->
 							<div class="text-muted fst-italic mb-3">derniere modification :
-								{{post.updated_at}}</div>
+							   {% if post.updated_at is not  null %}{{post.updated_at|date('d-m-Y H:i')}}
+							    {% else %}
+								{{post.created_at|date('d-m-Y H:i')}}
+								    {% endif %}	</div>
 							<!-- Post auteur -->
 							<p class="badge bg-secondary text-decoration-none link-light" href="#!">
 								{{post.auteur|upper}}
@@ -39,14 +42,14 @@
 						<!-- post chapo-->
 						<section class="mb-5">
 							<div class="d-flex justify-content-center">
-								<p class="fs-5 col-8 mb-4 text-center">
+								<p class="font-weight-bold fs-5 col-8 mb-4 text-center ">
 									{{post.chapo}}
 								</p>
 							</div>
 
 						</section>
 						<!-- Post content-->
-						<section class="mb-5">
+						<section class="mb-5 fs-5  ">
 							{{post.content|raw}}
 						</section>
 					</article>

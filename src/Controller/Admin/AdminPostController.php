@@ -53,13 +53,18 @@ class AdminPostController extends BaseAdminController
 
                 $post = new Post;
 
+                $timeZone = new DateTimeZone('Europe/Paris');
+                $current = new DateTime();
+                $current->setTimezone($timeZone);
+
+
                 $post->setTitle($_POST['title'])
                     ->setChapo($_POST['chapo'])
                     ->setAuteur($_POST['auteur'])
                     ->setContent($_POST['content'])
                     ->setImage($imgName)
                     ->setIsPublished($isPublished)
-                    ->setCreated_at();
+                    ->setCreated_at($current->format('Y-m-d H:i:s'));
                 $this->postRepo->create('post', $post);
 
                 $this->redirect('adminPost');

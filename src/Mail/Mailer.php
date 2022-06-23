@@ -18,14 +18,13 @@ class Mailer
         $this->mail->Port = 1025;
     }
 
-    public function contact($data)
+    public function send($data)
     {
-        //Recipients
         $this->mail->setFrom($data['email']);
         $this->mail->addAddress('yvensBlog@gmail.com');
 
         $this->mail->isHTML(true);
-        $this->mail->Subject = 'Here is the subject';
+        $this->mail->Subject = 'Blog Contact';
         $this->mail->CharSet = "utf-8";
         $this->mail->Body    = '  <h1>Demande de contact </h1> 
                     <h3>Nom  : ' . $data['name'] . ' <br>

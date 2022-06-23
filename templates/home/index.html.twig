@@ -48,11 +48,8 @@
 			</div>
 
 			<div>
-				<textarea name="message" cols="30" rows="10">
-					{% if session.contactInfo.message is defined  %}
-						{{session.contactInfo.message}}
-					{% endif %}
-				</textarea>
+				<textarea name="message" cols="30" rows="10" minlength="15"
+				>{% if session.contactInfo.message is defined  %}{{session.contactInfo.message}}{% endif %}</textarea>
 			</div>
 
 			<button type="submit" class="btn btn-primary">envoyer</button>

@@ -200,7 +200,7 @@ class Post extends Model
      *
      * @return  self
      */
-    public function setIsPublished(bool $isPublished)
+    public function setIsPublished($isPublished)
     {
         $this->isPublished = $isPublished;
 

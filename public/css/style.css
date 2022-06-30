@@ -1,0 +1,42 @@
+
+element {
+    --pricipal: brown;
+    --second : blue ;
+    --blanc : #fff ;
+    --noir: #121212 
+  }
+
+body {
+font-family: 'Work Sans', sans-serif;
+font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-weight: 800;
+}
+
+.link-unstyled, .link-unstyled:link, .link-unstyled:hover {
+    color: inherit;
+    text-decoration: inherit;
+  }
+nav{
+    background-color: #121212;
+}
+nav a{
+    color: #fff;
+}
+nav a:hover{
+    color: red;
+}
+header{
+    background-color: #121212;
+    color: #fff;
+}
+footer{
+    background-color: #121212;
+    color: #fff;
+}
+
+footer a{
+    color: var(--blanc);
+}

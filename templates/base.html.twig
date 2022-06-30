@@ -7,21 +7,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{% block title %}{% endblock %}</title>
 	    <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
 		<link rel="stylesheet" href="../public/css/style.css">
-        {% endblock %}
+		{% block stylesheets %}{% endblock %}
+    {% endblock %}
 		</head>
 	<body>
 		<header>
 			{% include "includes/header.html.twig" %}	
 		</header>
 
-        <div class="container">
+        <main>
 			{% block body %}{% endblock %}
-        </div>
+		</main>
 
 		<footer>
 			{% include "includes/footer.html.twig" %}
 		</footer>
-		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script async src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 	</body>
 </html>

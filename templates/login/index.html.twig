@@ -1,40 +1,82 @@
-{% extends "base.html.twig" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Login - Blog
-{% endblock %}
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-{% block stylesheets %}{% endblock %}
+		<title>Blog - Connexion</title>
 
-{% block body %}
+		<!-- Custom fonts for this template-->
+		<link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../public/css/register-login.css">
+	</head>
 
-	<h1>
-		page de connexion
-	</h1>
+	<body class="bg-gradient-primary bg-dark d-flex align-items-center">
 
-	{% if session.success is defined %}
-		<div style="color:green;">
-			{{session.success}}
+		<div class="container">
+
+			<!-- Outer Row -->
+			<div class="row justify-content-center">
+
+				<div class="col-xl-10 col-lg-12 col-md-9">
+
+					<div class="card o-hidden border-0 shadow-lg my-5">
+						<div
+							class="card-body p-0">
+							<!-- Nested Row within Card Body -->
+							<div class="row">
+								<div id="image-left" class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+								<div class="col-lg-6">
+									<div class="p-5">
+										<div class="text-center">
+											<h1 class="h2 text-gray-900 mb-4">
+												Se Connecter !</h1>
+										</div>
+										{% if session.success is defined %}
+											<div class="alert alert-success">
+												{{session.success}}
+											</div>
+										{% endif %}
+										{% if session.error is defined %}
+											<div class="alert alert-danger">
+												{{session.error}}
+											</div>
+										{% endif %}
+										<form class="user" method="POST">
+											<div class="form-group">
+												<input type="email" name="email" class="form-control shadow-none form-control-user" id="exampleInputEmail" aria-describedby="emailHelp"
+												 placeholder="Email." {% if session.info.email is defined %} value="{{session.info.email}}" {% endif %}>
+											</div>
+											<div class="form-group mb-5">
+												<input type="password" name="password" class="form-control shadow-none form-control-user" id="exampleInputPassword"
+												 placeholder="Mot de passe">
+											</div>
+
+											<div class="d-flex justify-content-center mb-3">
+												<button type="submit" class=" btn btn-outline-dark btn-user btn-block">
+													Connexion
+												</button>
+											</div>
+										</form>
+										<hr>
+										<div class="text-center">
+											<a class="small" href="index.php?path=registration">vous n'avez pas de compte ? Créer mon compte!</a>
+										</div>
+										<div class="text-center">
+											<a class="small" href="index.php?path=home">retour acceuil</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	{% endif %}
-    {% if session.error is defined %} 	
-		<div style="color:red;">
-			{{session.error}}  
-		</div>
-	{% endif %}
+	</body>
 
-	<form action="" method="POST">
-
-	<div>
-		<label for="email">email</label>
-		<input type="email" name="email"{% if session.info.email is defined %} value="{{session.info.email}}" {% endif %}>
-	</div>
-	<div>
-		<label for="password">mot de passe </label>
-		<input type="password" name="password">
-	</div>
-	
-	<button type="submit"> se connecter </button>
-	</form>
-
-
-{% endblock %}
+</html>

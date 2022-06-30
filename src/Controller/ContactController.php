@@ -23,12 +23,12 @@ class ContactController extends MainController
 
         if (empty($_POST['name'])) {
             $_SESSION['contactError'] = 'veuillez renseigner un nom';
-            $this->redirect('home');
+            $this->redirect('home#contact');
         }
 
         if (empty($_POST['firstName'])) {
             $_SESSION['contactError'] = 'veuillez renseigner un prénom';
-            $this->redirect('home');
+            $this->redirect('home#contact');
         }
         $m = strlen($_POST['message']);
 
@@ -36,7 +36,7 @@ class ContactController extends MainController
             var_dump($m);
             $_SESSION['contactError'] = 'message trop court, le message doit comporter minimum 15 charactères';
             unset($_SESSION['contactSuccess']);
-            $this->redirect('home');
+            $this->redirect('home#contact');
         }
 
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -57,7 +57,7 @@ class ContactController extends MainController
             $this->redirect('home');
         } else {
             $_SESSION['contactError'] = 'l\'addresse email n\'est pas valide ';
-            $this->redirect('home');
+            $this->redirect('home#contact');
         }
     }
 }

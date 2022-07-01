@@ -1,16 +1,18 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Accueil
-{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block stylesheets %}{% endblock %}
 
 {% block body %}
 
 	<section id="home">
-		<div style="background: url(https://bootstrapious.com/i/snippets/sn-static-header/background.jpg); height:90vh; background-size:cover;" class="jumbotron  text-white mb-4">
-			<div class="container py-5 d-flex align-item-center">
-				<h1 class="display-4 font-weight-bold">Section presentation</h1>
+		<div id="font-pres" class="jumbotron d-flex align-items-center justify-content-center text-white mb-4"  >
+			<div class="d-flex justify-content-center">
+			   <div class="col-7 text-center">
+					<h1 class="display-4 font-weight-bold h2 pb-5">Darius Yvens</h1>
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis optio ei tempore, reiciendis unde, cumque corrupti qui. Vel!</p>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -21,9 +23,11 @@
 		</div>
 	</section>
 
+<i class="fa-brands fa-facebook"></i>
+
 	<section id="contact">
 		<h2>
-			Me contacter
+			Me contacter  <i class="fa-brands fa-github fa-2x"></i> <i class="fa-brands fa-github"></i>
 		</h2>
 		{% if session.contactError is defined %}
 			<div class="alert alert-danger" role="alert">

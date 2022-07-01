@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eabdfa7b699fb18994ff80d64ace1027",
+    "content-hash": "c4cdcdc01d30d5220d1664222740952e",
     "packages": [
         {
             "name": "ckeditor/ckeditor",
@@ -53,6 +53,45 @@
                 "wiki": "https://ckeditor.com/docs/ckeditor4/latest/"
             },
             "time": "2022-05-18T10:49:44+00:00"
+        },
+        {
+            "name": "components/font-awesome",
+            "version": "6.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/font-awesome.git",
+                "reference": "9c95a6a9572933bc964f05b810f0808a5de00ee1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/font-awesome/zipball/9c95a6a9572933bc964f05b810f0808a5de00ee1",
+                "reference": "9c95a6a9572933bc964f05b810f0808a5de00ee1",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "styles": [
+                        "css/all.css"
+                    ],
+                    "files": [
+                        "css/all.min.css",
+                        "webfonts/*"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-4.0",
+                "MIT",
+                "OFL-1.1"
+            ],
+            "description": "Font Awesome, the iconic SVG, font, and CSS framework.",
+            "support": {
+                "issues": "https://github.com/components/font-awesome/issues",
+                "source": "https://github.com/components/font-awesome/tree/6.1.1"
+            },
+            "time": "2022-04-18T13:15:48+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

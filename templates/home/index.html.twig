@@ -19,15 +19,14 @@
 
 	<section class="container" id="cv">
 		<div class="d-flex justify-content-center">
-			<a href="../public/pdf/dariusYvensCv.pdf" class="btn btn-primary" target="_blank">mon parcour</a>
+			<a href="../public/pdf/dariusYvensCv.pdf" class="btn btn-dark" target="_blank">mon parcour</a>
 		</div>
 	</section>
 
-<i class="fa-brands fa-facebook"></i>
-
-	<section id="contact">
-		<h2>
-			Me contacter  <i class="fa-brands fa-github fa-2x"></i> <i class="fa-brands fa-github"></i>
+	<section id="contact" class="container d-flex justify-content-center mt-5 mn-5">
+	<div class="col-11 col-md-8">
+		<h2 class="text-center">
+			Me contacter 
 		</h2>
 		{% if session.contactError is defined %}
 			<div class="alert alert-danger" role="alert">
@@ -39,31 +38,58 @@
 				{{session.contactSuccess}}
 			</div>
 		{% endif %}
-		<form action="index.php?path=contact/sendContact" method="POST">
-			<div>
-				<label for="name">
-					Nom</label>
-				<input type="text" name="name" {% if session.contactInfo.name is defined %} value="{{session.contactInfo.name}}" {% endif %}>
+		<form action="index.php?path=contact/sendContact" method="POST">*
+		<div class="form-group row">
+			<div  class="col-sm-6 mb-3 mb-sm-0">
+				<input type="text" name="name" {% if session.contactInfo.name is defined %} value="{{session.contactInfo.name}}" {% endif %}
+				 placeholder="Nom" class="form-control shadow-none form-control-user" >
 			</div>
-			<div>
-				<label for="firstName">
-					Prenom</label>
-				<input type="text" name="firstName" {% if session.contactInfo.firstName is defined %} value="{{session.contactInfo.firstName}}" {% endif %}>
+			<div class="col-sm-6">
+				<input type="text" name="firstName" {% if session.contactInfo.firstName is defined %} value="{{session.contactInfo.firstName}}" {% endif %}
+				 placeholder="Prenom" class="form-control shadow-none form-control-user">
 			</div>
-			<div>
-				<label for="email">
-					email</label>
-				<input type="email" name="email" {% if session.contactInfo.email is defined %} value="{{session.contactInfo.email}}" {% endif %}>
+          
+			{# <div >
+				<input type="text" class="form-control form-control-user" id="exampleFirstName" name="first_name" {% if session.info.firstName is defined %} value="{{session.info.firstName}}"{% endif %} placeholder="Prénom">
 			</div>
-			<div>
-				<textarea name="message" cols="30" rows="10" minlength="15">
-					{% if session.contactInfo.message is defined  %}
-						{{session.contactInfo.message}}
-					{% endif %}
-				</textarea>
+			<div >
+				<input type="text" class="form-control form-control-user" id="exampleLastName" name="name" {% if session.info.name is defined %} value="{{session.info.name}}" {% endif %} placeholder="Nom">
+			</div> #}
+		</div>
+
+			<div class="form-group">
+				<input type="email" name="email" {% if session.contactInfo.email is defined %} value="{{session.contactInfo.email}}" {% endif %}
+				placeholder="Email" class="form-control shadow-none form-control-user">
 			</div>
-			<button type="submit" class="btn btn-dark">envoyer</button>
+			
+			<div class="pt-4">
+				<textarea placeholder="Votre Message ..." class="form-control shadow-none" name="message"
+				 cols="30" rows="10" minlength="15">{% if session.contactInfo.message is defined  %}{{session.contactInfo.message|raw}}{% endif %}</textarea>
+			</div>
+			<div class="p-4 d-flex justify-content-center">
+			  <button type="submit" class="btn btn-outline-dark btn-user btn-block"> envoyer </button>
+			</div>
+		  </div>
 		</form>
+
+
+		{# <div class="form-group row">
+			<div class="col-sm-6 mb-3 mb-sm-0">
+				<input type="text" class="form-control form-control-user" id="exampleFirstName" name="first_name" {% if session.info.firstName is defined %} value="{{session.info.firstName}}"{% endif %} placeholder="Prénom">
+			</div>
+			<div class="col-sm-6">
+				<input type="text" class="form-control form-control-user" id="exampleLastName" name="name" {% if session.info.name is defined %} value="{{session.info.name}}" {% endif %} placeholder="Nom">
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" {% if session.info.email is defined %} value="{{session.info.email}}" {% endif %} placeholder="Email">
+		</div>
+		<div class="form-group ">
+			<input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mot de passe">
+		</div> #}
 	</section>
+
+	<div >
+</div>
 
 {% endblock %}

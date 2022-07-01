@@ -4,9 +4,8 @@
 {% endblock %}
 
 {% block body %}
-
-	<h1 class="text-center">
-		Modifier Articles</h1>
+<div class="container  mb-5">
+	<h1 class="text-center p-3"> Modifier un articles</h1>
 
 	<form action="index.php?path=adminPost/updatePost/{{post.id}}" method="POST" enctype="multipart/form-data">
 		<div class="form-group">
@@ -28,7 +27,7 @@
 				{{post.content}}
 			</textarea>
 		</div>
-		<div class="form-group pt-2">
+		<div class="form-group pt-2 mb-4">
 			<div>
 				<label for="file">image a la une *
 				</label>
@@ -47,9 +46,9 @@
 			<label class="form-check-label" for="inlineRadio2">non</label>
 		</div>
 
-		<div class="pt-5">
-			<button type="submit" class="btn btn-primary">Modifier</button>
+		<div class="pt-5 d-flex justify-content-center">
+			<button type="submit" class="btn btn-outline-dark">Valider</button>
 		</div>
 	</form>
-
+</div>
 {% endblock %}

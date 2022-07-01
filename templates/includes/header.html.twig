@@ -1,24 +1,42 @@
-<div class="row p-3 mb-2 bg-dark text-white">
-	<h3>
-		je suis le header
-		
-		<a href="index.php">home</a>
-		<a href="index.php?path=contact">contact</a>
-		<a href="index.php?path=post">Blog</a>
-		<a href="index.php?path=registration">inscription</a>
-		{% if session.user is defined %} 
-		 <a href="index.php?path=login/logout">déconexion</a>
-		{% else %}
-		 <a href="index.php?path=login">se connecter</a>
-		{% endif %}
-		{% if session.user is defined and session.user.role == 'ROLE_ADMIN' %}
-		<a href="index.php?path=adminDashboard">Dashboard</a>
-		{% endif %}
-	</h3>
+<nav class="navbar navbar-expand-lg py-3 navbar-dark text-white shadow-sm">
+	<div class="container">
+		<a
+			href="#" class="navbar-brand">
+			<!-- Logo Image -->
+			<img
+			src="https://bootstrapious.com/i/snippets/sn-nav-logo/logo.png" width="45" alt="" class="d-inline-block align-middle mr-2">
+			<!-- Logo Text -->
+			<span class="text-uppercase font-weight-bold">Darius Yvens</span>
+		</a>
 
-{% if session.user is defined %}
-	<div>
-		<h2>Bienvenue {{session.user.firstName}} {{session.user.name}} </h2>
+		<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+		<div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto ">
+				<li class="nav-item">
+					<a class="nav-link" href="index.php">home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php?path=post">Blog</a>
+				</li>
+				{% if session.user is defined and session.user.role == 'ROLE_ADMIN' %}
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?path=adminDashboard">Dashboard</a>
+					</li>
+				{% endif %}
+				{% if session.user is defined %}
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?path=login/logout">déconexion</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?path=login">se connecter</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
 	</div>
-{% endif %}
-</div>
+</nav>

@@ -46,23 +46,24 @@ class AdminPostController extends BaseAdminController
                 $path_dest = ROOT . '/public/upload/post/' . $imgName;
                 move_uploaded_file($tmp_name, $path_dest);
 
-                $isPublished = false;
-                if (!empty($_POST['isPublished'])) {
-                    $isPublished = $_POST['isPublished'];
-                }
 
                 $post = new Post;
+
+                $timeZone = new DateTimeZone('Europe/Paris');
+                $current = new DateTime();
+                $current->setTimezone($timeZone);
+
 
                 $post->setTitle($_POST['title'])
                     ->setChapo($_POST['chapo'])
                     ->setAuteur($_POST['auteur'])
                     ->setContent($_POST['content'])
                     ->setImage($imgName)
-                    ->setIsPublished($isPublished)
-                    ->setCreated_at();
+                    ->setIsPublished($_POST['isPublished'])
+                    ->setCreated_at($current->format('Y-m-d H:i:s'));
                 $this->postRepo->create('post', $post);
-                header('Location: index.php?path=adminPost');
-                die();
+
+                $this->redirect('adminPost');
             } else {
                 $_SESSION['error'] = 'un ou plusieurs des champs obligatoires sont vide ';
             }
@@ -96,13 +97,12 @@ class AdminPostController extends BaseAdminController
                 $imgName = 'post-' . time() . '.' . $extention;
                 $path_dest = ROOT . '/public/upload/post/' . $imgName;
                 move_uploaded_file($tmp_name, $path_dest);
-                $postUpdate['image'] = $imgName ;
+                $postUpdate['image'] = $imgName;
             }
 
-            $this->postRepo->update('post',$arg, $postUpdate);
+            $this->postRepo->update('post', $arg, $postUpdate);
 
-            header('Location: index.php?path=adminPost');
-            die();
+            $this->redirect('adminPost');
         }
 
         $this->twig->display('admin/post/updatePost.html.twig', [
@@ -113,8 +113,8 @@ class AdminPostController extends BaseAdminController
     public function deletePost($id)
     {
         if (!empty($id)) {
-             $this->postRepo->delete($id);
+            $this->postRepo->delete($id);
         }
-        header('Location: index.php?path=adminPost');
+        $this->redirect('adminPost');
     }
 }

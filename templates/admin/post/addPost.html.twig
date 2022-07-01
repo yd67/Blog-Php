@@ -5,14 +5,13 @@
 
 {% block body %}
 
-	<h1 class="text-center">
-		ajout Articles</h1>
+	<h1 class="text-center p-3">ajouter un  articles</h1>
 	{% if session.error is defined %}
 		<div style="color:red;">
 			{{session.error}}
 		</div>
 	{% endif %}
-
+<div class="container  mb-5">
 	<form action="index.php?path=adminPost/addPost" method="POST" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="title">titre *</label>
@@ -40,17 +39,23 @@
 				<label for="file">image a la une *
 				</label>
 			</div>
-			<input type="file" class="form-control-file" name="file">
+			<input type="file" required class="form-control-file" name="file">
 		</div>
 
-		<div class="form-check pt-3">
-			<input type="checkbox" {% if info.isPublished is defined %} checked {% endif %} class="form-check-input" name="isPublished">
-			<label class="form-check-label" for="isPublished">Metre l'article en ligne</label>
+		<p>En ligne</p>
+		<div class="form-check form-check-inline ">
+			<input class="form-check-input" type="radio" name="isPublished" id="inlineRadio1" value="1" {% if info.isPublished == true %} checked {% endif %}>
+			<label class="form-check-label" for="inlineRadio1">oui
+			</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="isPublished" id="inlineRadio2" value="0" {% if info.isPublished == false %} checked {% endif %}>
+			<label class="form-check-label" for="inlineRadio2">non</label>
 		</div>
 
-		<div class="pt-5">
-			<button type="submit" class="btn btn-primary">Ajouter</button>
+		<div class="pt-5 d-flex justify-content-center">
+			<button type="submit" class="btn btn-outline-dark">Ajouter</button>
 		</div>
 	</form>
-
+</div>
 {% endblock %}

@@ -100,13 +100,9 @@ class Post extends Model
      *
      * @return  self
      */
-    public function setCreated_at()
+    public function setCreated_at($created_at)
     {
-        $timeZone = new DateTimeZone('Europe/Paris');
-        $date = new DateTime();
-        $date->setTimezone($timeZone);
-
-        $this->created_at = $date->format('Y-m-d H:i:s');
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -204,7 +200,7 @@ class Post extends Model
      *
      * @return  self
      */
-    public function setIsPublished(bool $isPublished)
+    public function setIsPublished($isPublished)
     {
         $this->isPublished = $isPublished;
 

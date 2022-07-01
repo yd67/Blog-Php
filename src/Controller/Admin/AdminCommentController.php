@@ -28,8 +28,8 @@ class AdminCommentController extends BaseAdminController
     public function acceptComment($id)
     {
         if (!empty($id)) {
-            $this->commentRepo->approuveComment($id);
-            header('Location: index.php?path=adminComment');
+            $this->commentRepo->approuveComment($id); 
+            $this->redirect('adminComment');
         }
     }
 }

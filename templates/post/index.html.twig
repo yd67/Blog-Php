@@ -1,29 +1,52 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Blog list - {% endblock %}
+{% block title %}Blog list -{% endblock %}
 
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="../public/css/blog.css">{% endblock %}
 
 {% block body %}
 
-<h1> page listing des post </h1>
+	<div style="background: url(https://bootstrapious.com/i/snippets/sn-static-header/background.jpg)" class="jumbotron bg-cover text-white mb-4">
+		<div class="container py-5 text-center">
+			<h1 class="display-4 font-weight-bold">MON BLOG</h1>
+		</div>
+	</div>
 
-<div class="col-8">
-<div class="card-group">
-{% for p in post %}
-  <div class="card m-4">
-   <a href="index.php?path=post/details/{{p.id}}"><img class="card-img-top" src="../public/upload/post/{{p.image}}" alt="Card image cap"></a> 
-    <div class="card-body">
-      <h5 class="card-title">{{p.title}}</h5>
-      <p class="card-text">{{p.chapo}}</p>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">{{p.updated_at|date('d/m/Y')}}</small>
-    </div>
-  </div>
-  
-{% endfor %}
-</div>
-</div>
+	<section class="mt-5 mb-5">
+		<div class="section-inner">
+			<div class="container">
+				<div class="row">
+					{% for p in post %}
+						<div class="col-sm-4 blog-item mb100 wow match-height animated p-3 pt-4" >
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="hover-item mb30">
+										<img src="../public/upload/post/{{p.image}}" style="height: 290px" class="img-responsive smoothie" alt="title">
+										<div class="overlay-item-caption smoothie"></div>
+										<div class="hover-item-caption smoothie">
+											<h3 class="vertical-center smoothie" style="padding-top: 118.25px;">
+												<a href="index.php?path=post/details/{{p.id}}" class="smoothie btn btn-outline-dark page-scroll" title="view article">Voir</a>
+											</h3>
+										</div>
+									</div>
+									<h2 class="post-title mt-3">{{p.title}}</h2>
+									<div class="item-metas text-muted mb30">
+										<span class="meta-item">
+											<i class="pe-icon pe-7s-folder"></i>
+											Dernière modification
+											<span>{{p.updated_at|date('d/m/Y')}}</span>
+										</span>
+									</div>
+									<p>
+										{{p.chapo}}
+									</p>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}

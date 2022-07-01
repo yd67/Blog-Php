@@ -6,7 +6,64 @@
 
 {% block body %}
 
-<h1> page Accueil</h1>
+	<section id="home">
+		<div id="font-pres" class="jumbotron d-flex align-items-center justify-content-center text-white mb-4"  >
+			<div class="d-flex justify-content-center">
+			   <div class="col-7 text-center">
+					<h1 class="display-4 font-weight-bold h2 pb-5">Darius Yvens</h1>
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis optio ei tempore, reiciendis unde, cumque corrupti qui. Vel!</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
+	<section class="container" id="cv">
+		<div class="d-flex justify-content-center">
+			<a href="../public/pdf/dariusYvensCv.pdf" class="btn btn-primary" target="_blank">mon parcour</a>
+		</div>
+	</section>
+
+<i class="fa-brands fa-facebook"></i>
+
+	<section id="contact">
+		<h2>
+			Me contacter  <i class="fa-brands fa-github fa-2x"></i> <i class="fa-brands fa-github"></i>
+		</h2>
+		{% if session.contactError is defined %}
+			<div class="alert alert-danger" role="alert">
+				{{session.contactError}}
+			</div>
+		{% endif %}
+		{% if session.contactSuccess is defined %}
+			<div class="alert alert-success" role="alert">
+				{{session.contactSuccess}}
+			</div>
+		{% endif %}
+		<form action="index.php?path=contact/sendContact" method="POST">
+			<div>
+				<label for="name">
+					Nom</label>
+				<input type="text" name="name" {% if session.contactInfo.name is defined %} value="{{session.contactInfo.name}}" {% endif %}>
+			</div>
+			<div>
+				<label for="firstName">
+					Prenom</label>
+				<input type="text" name="firstName" {% if session.contactInfo.firstName is defined %} value="{{session.contactInfo.firstName}}" {% endif %}>
+			</div>
+			<div>
+				<label for="email">
+					email</label>
+				<input type="email" name="email" {% if session.contactInfo.email is defined %} value="{{session.contactInfo.email}}" {% endif %}>
+			</div>
+			<div>
+				<textarea name="message" cols="30" rows="10" minlength="15">
+					{% if session.contactInfo.message is defined  %}
+						{{session.contactInfo.message}}
+					{% endif %}
+				</textarea>
+			</div>
+			<button type="submit" class="btn btn-dark">envoyer</button>
+		</form>
+	</section>
 
 {% endblock %}

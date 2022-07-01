@@ -17,8 +17,7 @@ class CommentsRepository extends MainRepository
         $pdo = $this->getPdo();
         $statement = $pdo->query($sql);
 
-        $result = $statement->fetchAll( PDO::FETCH_CLASS, 'App\Model\Comments');
-        
+        $result = $statement->fetchAll( PDO::FETCH_CLASS, Comments::class ); 
          return $result ;
     }
 

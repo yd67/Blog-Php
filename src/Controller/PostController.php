@@ -57,7 +57,7 @@ class PostController extends MainController
 
             $this->commentsRepo->create('comments', $comment);
 
-            header('Location: index.php?path=post/details/' . $postId);
+            $this->redirect('post/details/'.$postId) ;
         }
     }
 }

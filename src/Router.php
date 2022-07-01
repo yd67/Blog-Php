@@ -58,13 +58,13 @@ class Router
         } 
 
         if (class_exists($controller)) {
-            var_dump($controller,$method,$arg);
+          //  var_dump($controller,$method,$arg);
             $class = new $controller() ;
             $class->$method($arg);
 
         }else {
            $class = new MainController ;
-           var_dump($controller,$method,$arg);
+          // var_dump($controller,$method,$arg);
            $class->page404();
         }
 

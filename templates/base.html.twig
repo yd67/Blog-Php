@@ -6,21 +6,26 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{% block title %}{% endblock %}</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+		<link rel="stylesheet" href="../vendor/components/font-awesome/css/all.css">
 	    <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
-        {% endblock %}
+		<link rel="stylesheet" href="../public/css/style.css">
+		{% block stylesheets %}{% endblock %}
+    {% endblock %}
 		</head>
 	<body>
 		<header>
 			{% include "includes/header.html.twig" %}	
 		</header>
 
-        <div class="container">
+        <main>
 			{% block body %}{% endblock %}
-        </div>
+		</main>
 
-		<footer>
+		<footer class="py-3 my-4">
 			{% include "includes/footer.html.twig" %}
 		</footer>
-		<script src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script async src="../vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
 	</body>
 </html>

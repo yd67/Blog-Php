@@ -31,8 +31,8 @@ class LoginController extends MainController
             if (password_verify($pass, $user['password'])) {
                 unset($user['password']);
                 $_SESSION['user'] = $user ;
-                if ($user['role' === 'ROLE_ADMIN']) {
-                    $this->redirect('adminDashboard') ;
+                if ($user['role'] === 'ROLE_ADMIN') {
+                    $this->redirect('adminPost') ;
                 }
                 $this->redirect('home') ;
 

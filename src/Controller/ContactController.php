@@ -54,7 +54,7 @@ class ContactController extends MainController
             unset($_SESSION['contactInfo']);
             unset($_SESSION['contactError']);
             $_SESSION['contactSuccess'] = 'l\'email a bien été envoyé , nous vous contacterons dans les plus brefs delais';
-            $this->redirect('home');
+            $this->redirect('home#contact');
         } else {
             $_SESSION['contactError'] = 'l\'addresse email n\'est pas valide ';
             $this->redirect('home#contact');

@@ -34,7 +34,7 @@ class LoginController extends MainController
                 if ($user['role'] === 'ROLE_ADMIN') {
                     $this->redirect('adminPost') ;
                 }
-                $this->redirect('home') ;
+                $this->redirect('post') ;
 
             } else {
                 $_SESSION['error'] = 'Les informations de connexion sont incorrect.' ;

@@ -54,8 +54,7 @@ class ContactController extends MainController
 
             $this->session->remove('contactInfo');
             $this->session->remove('contactError');
-
-            $this->session->write('contactSuccess');
+            $this->session->write('contactSuccess','l\'email a bien été envoyé , nous vous contacterons dans les plus brefs delais');
             $this->redirect('home#contact','l\'email a bien été envoyé , nous vous contacterons dans les plus brefs delais');
         } else {
             $this->session->write('contactError','l\'addresse email n\'est pas valide ') ;

@@ -16,7 +16,7 @@ class HomeController extends MainController
 
     public function show()
     {
-        echo('le show du home') ;
+        
     }
 
 }

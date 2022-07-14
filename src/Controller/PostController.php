@@ -39,7 +39,7 @@ class PostController extends MainController
     public function addComments()
     {
         $data = $_POST ;
-        $u = $_SESSION['user'] ;
+        $u =  $this->session->get('user') ;
 
         if ( !empty($data) && !empty($u)) {
 

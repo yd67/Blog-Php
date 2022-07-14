@@ -10,7 +10,7 @@ class RegistrationController extends MainController
 
     public function index()
     {
-        unset($_SESSION['error']);
+        $this->session->remove('error');
 
         $data = $_POST ;
         if (!empty($data)) {
@@ -22,22 +22,23 @@ class RegistrationController extends MainController
             $role = 'ROLE_USER';
             $file = $_FILES['file'];
 
-            $_SESSION['info'] =  [
+            $info =  [
                 'name' => $name,
                 'firstName' => $firstName,
                 'email' => $email
             ];
+            $this->session->write('info',$info ) ;
 
             if (empty($name)) {
-                $_SESSION['error'] = 'veillez rensseigner votre nom ';
+                $this->session->write('error','veillez rensseigner votre nom ') ;
                 $this->redirect('registration') ;
             }
             if (empty($firstName)) {
-                $_SESSION['error'] = 'veillez rensseigner votre prénom ';
+                $this->session->write('error','veillez rensseigner votre prénom') ;
                 $this->redirect('registration') ;
             }
             if (empty($email)) {
-                $_SESSION['error'] = 'veillez rensseigner une adresse email ';
+                $this->session->write('error','veillez rensseigner une adresse email');
                 $this->redirect('registration') ;
             }
 
@@ -45,11 +46,11 @@ class RegistrationController extends MainController
             $user = $userRepo->findBy('user', 'email', $email);
 
             if (!empty($user)) {
-                $_SESSION['error'] = 'adresse email non disponible';
+                $this->session->write('error','adresse email non disponible') ;
                 $this->redirect('registration') ;
             }
             if (empty($pass)) {
-                $_SESSION['error'] = 'le mot de passe ne doit pas etre vide ';
+                $this->session->write('error','le mot de passe ne doit pas etre vide ') ;
                 $this->redirect('registration') ;
             }
 
@@ -83,10 +84,10 @@ class RegistrationController extends MainController
             $userRepo->createUser($user);
 
             // delete error message  and info of user
-            unset($_SESSION['error']);
-            unset($_SESSION['info']);
+            $this->session->remove('error') ;
+            $this->session->remove('info');
 
-            $_SESSION['success'] = 'Votre compte a bien été créer';
+            $this->session->write('success','Votre compte a bien été créer') ;
             $this->redirect('login') ;
         }
 
@@ -95,7 +96,4 @@ class RegistrationController extends MainController
     }
 
 
-    public function register()
-    {
-    }
 }

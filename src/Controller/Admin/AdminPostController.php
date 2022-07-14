@@ -31,14 +31,15 @@ class AdminPostController extends BaseAdminController
     public function addPost()
     {
         $info = [];
-        $data = $_POST ;
+        $data = $this->global->get_POST() ;
 
         if (!empty($data)) {
-            $data = $_POST ;
+            $data = $this->global->get_POST() ;
             $info = $data;
 
             if (!empty($data['title']) && !empty($data['chapo']) && !empty($data['auteur']) && !empty($_FILES['file']['name'])) {
-                unset($_SESSION['error']);
+
+                $this->session->remove('error');
 
                 // treatment of images
                 $file = $_FILES['file'];
@@ -68,7 +69,7 @@ class AdminPostController extends BaseAdminController
 
                 $this->redirect('adminPost');
             } else {
-                $_SESSION['error'] = 'un ou plusieurs des champs obligatoires sont vide ';
+                $this->session->write('error','un ou plusieurs des champs obligatoires sont vide');
             }
         }
         $this->twig->display('admin/post/addPost.html.twig', [
@@ -80,7 +81,7 @@ class AdminPostController extends BaseAdminController
     {
 
         $post = $this->postRepo->findBy('post', 'id', $arg);
-        $data = $_POST ;
+        $data = $this->global->get_POST() ;
 
         if (!empty($data)) {
 

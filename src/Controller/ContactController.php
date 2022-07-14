@@ -17,25 +17,26 @@ class ContactController extends MainController
 
     public function sendContact()
     {
-        $data = $_POST ;
-        $_SESSION['contactInfo'] = $data;
-        unset($_SESSION['contactSuccess']);
-        unset($_SESSION['contactError']);
+        $data = $this->global->get_POST() ;
+        $this->session->write('contactInfo',$data);
+        $this->session->remove('contactSuccess');
+        $this->session->remove('contactError');
 
         if (empty($data['name'])) {
-            $_SESSION['contactError'] = 'veuillez renseigner un nom';
+            $this->session->write('contactError','veuillez renseigner un nom');
             $this->redirect('home#contact');
         }
 
         if (empty($data['firstName'])) {
-            $_SESSION['contactError'] = 'veuillez renseigner un prénom';
+            $this->session->write('contactError','veuillez renseigner un prénom');
             $this->redirect('home#contact');
         }
         $m = strlen($data['message']);
 
         if ($m <= 15) {
-            $_SESSION['contactError'] = 'message trop court, le message doit comporter minimum 15 charactères';
-            unset($_SESSION['contactSuccess']);
+            $this->session->write('contactError','message trop court, le message doit comporter minimum 15 charactères');
+        
+            $this->session->remove('contactSuccess');
             $this->redirect('home#contact');
         }
 
@@ -51,12 +52,13 @@ class ContactController extends MainController
             $mail = new Mailer;
             $mail->send($dataMessage);
 
-            unset($_SESSION['contactInfo']);
-            unset($_SESSION['contactError']);
-            $_SESSION['contactSuccess'] = 'l\'email a bien été envoyé , nous vous contacterons dans les plus brefs delais';
-            $this->redirect('home#contact');
+            $this->session->remove('contactInfo');
+            $this->session->remove('contactError');
+
+            $this->session->write('contactSuccess');
+            $this->redirect('home#contact','l\'email a bien été envoyé , nous vous contacterons dans les plus brefs delais');
         } else {
-            $_SESSION['contactError'] = 'l\'addresse email n\'est pas valide ';
+            $this->session->write('contactError','l\'addresse email n\'est pas valide ') ;
             $this->redirect('home#contact');
         }
     }

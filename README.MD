@@ -24,16 +24,16 @@ Vous développerez une partie administration qui devra être accessible uniqueme
 
 Sur la page d’accueil, il faudra présenter les informations suivantes :
 
-   - votre nom et votre prénom ;
-   - une photo et/ou un logo ;
-   - une phrase d’accroche qui vous ressemble  ;
-   - un menu permettant de naviguer parmi l’ensemble des pages de votre site web ;
-   - un formulaire de contact (à la soumission de ce formulaire, un e-mail avec toutes ces informations vous sera envoyé) avec les champs suivants :
+   -   votre nom et votre prénom ;
+   -  une photo et/ou un logo ;
+   -  une phrase d’accroche qui vous ressemble  ;
+   -  un menu permettant de naviguer parmi l’ensemble des pages de votre site web ;
+   -  un formulaire de contact (à la soumission de ce formulaire, un e-mail avec toutes ces informations vous sera envoyé) avec les champs suivants :
         nom/prénom,
         e-mail de contact,
         message,
-   - un lien vers votre CV au format PDF ;
-   - et l’ensemble des liens vers les réseaux sociaux où l’on peut vous suivre (GitHub, LinkedIn, Twitter…).
+   -  un lien vers votre CV au format PDF ;
+   -  et l’ensemble des liens vers les réseaux sociaux où l’on peut vous suivre (GitHub, LinkedIn, Twitter…).
 
 Sur la page listant tous les blogs posts (du plus récent au plus ancien), il faut afficher les informations suivantes pour chaque blog post :
 

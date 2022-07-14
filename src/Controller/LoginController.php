@@ -10,7 +10,7 @@ class LoginController extends MainController
     {
         $this->session->remove('error');
 
-        $data = $_POST ;
+        $data = $this->global->get_POST() ;
 
         if (!empty($data)) {
             $this->session->remove('success');

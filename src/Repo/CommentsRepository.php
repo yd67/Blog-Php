@@ -10,9 +10,7 @@ class CommentsRepository extends MainRepository
 
     public function validateComments($id)
     {
-       // $sql ="SELECT * FROM `comments` INNER JOIN user ON comments.id = comments.user_id WHERE `post_id` = {$id} AND `etat` = 3 ";
        $sql ="SELECT * FROM comments c INNER JOIN user u on c.user_id = u.id    WHERE `post_id` = {$id} AND `etat` = 1 " ;
-      //  $result =  $this->pdoQuery($sql); 
         
         $pdo = $this->getPdo();
         $statement = $pdo->query($sql);
@@ -38,8 +36,6 @@ class CommentsRepository extends MainRepository
       $pdo = $this->getPdo();
       $req = $pdo->prepare(" UPDATE `comments` SET etat = 1 WHERE id = :id ");
 
-      var_dump($req);
       $req->execute(['id'=>$id]);
-      var_dump($req);
     }
 }

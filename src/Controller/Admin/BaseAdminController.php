@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use Exception;
 use App\Controller\MainController;
 
 class BaseAdminController extends MainController
@@ -11,12 +12,14 @@ class BaseAdminController extends MainController
     {
         parent::__construct();
 
+
         if ($this->isAuth() === false) {
             $this->redirect('login');
         }
 
         if ($this->isAdmin() === false) {
             $this->redirect('login');
+
         }
     }
 }

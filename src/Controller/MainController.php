@@ -26,8 +26,7 @@ class MainController
 
     public function index()
     {
-
-        var_dump('le main controller');
+    
     }
 
     public function isAuth()
@@ -58,7 +57,9 @@ class MainController
 
     public function redirect($path)
     {
+
         header('Location: index.php?path=' . $path);
         exit();
+
     }
 }

@@ -33,7 +33,6 @@ class ContactController extends MainController
         $m = strlen($_POST['message']);
 
         if ($m <= 15) {
-            var_dump($m);
             $_SESSION['contactError'] = 'message trop court, le message doit comporter minimum 15 charactères';
             unset($_SESSION['contactSuccess']);
             $this->redirect('home#contact');

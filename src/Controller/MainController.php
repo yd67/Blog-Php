@@ -10,9 +10,9 @@ use Twig\Loader\FilesystemLoader;
 
 class MainController
 {
-    private $loader;
+    protected $loader;
     protected $twig;
-    private $session;
+    protected $session;
     protected $global;
 
     public function __construct()
@@ -78,6 +78,7 @@ class MainController
 
     public function redirect($path)
     {
+        
         header('Location: index.php?path=' . $path);
         exit();
     }

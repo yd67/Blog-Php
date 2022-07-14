@@ -54,7 +54,9 @@ class LoginController extends MainController
 
     public function logout()
     {
-        $this->session->remove('user');
+        if (!empty($this->session)) { 
+             $this->session->remove('user');
+        }
         $this->redirect('login') ;
     }
 }

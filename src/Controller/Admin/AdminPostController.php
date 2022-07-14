@@ -24,7 +24,6 @@ class AdminPostController extends BaseAdminController
     public function index()
     {
         $posts = $this->postRepo->findAll();
-        var_dump($this->session);
 
         $this->twig->display('admin/post/index.html.twig', [
             'posts' => $posts

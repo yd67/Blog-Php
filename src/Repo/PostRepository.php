@@ -49,8 +49,7 @@ class PostRepository extends MainRepository
         $req = $pdo->prepare("DELETE FROM `post` WHERE id = :id ");
 
         $req->execute(['id'=>$id]);
-    }
-    
-    
+    }   
 
 }
+

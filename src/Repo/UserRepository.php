@@ -24,7 +24,6 @@ class UserRepository extends MainRepository
 
         $req->execute();
 
-    }
-    
+    }   
  
 }

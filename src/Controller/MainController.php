@@ -17,18 +17,18 @@ class MainController
 
     public function __construct()
     {
-        if (is_null($this->session)) {
+        if ($this->session === null) {
             $this->session = new Session;
         }
-        if (is_null($this->global)) {
+        if ($this->global === null) {
             $this->global = new superglobals;
         }
 
-        if (is_null($this->loader)) {
+        if ($this->loader === null) {
             $this->loader = new FilesystemLoader(ROOT . '/templates');
         }
 
-        if (is_null($this->twig)) {
+        if ($this->twig === null) {
             $this->twig = new Environment($this->loader, [
                 'debug' => true,
                 'cache' => false,

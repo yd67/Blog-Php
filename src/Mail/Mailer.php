@@ -16,10 +16,6 @@ class Mailer
         $this->mail->isSMTP();
         $this->mail->Host = 'localhost';  
         $this->mail->Port = 1025;
-        // $this->mail->SMTPAuth = true;  
-        // $this->mail->Username = 'user@votredomaine.com'; 
-        // $this->mail->Password = 'secret'; 
-        // $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
     }
 
     public function send($data)

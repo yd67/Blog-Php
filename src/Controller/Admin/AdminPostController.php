@@ -31,10 +31,13 @@ class AdminPostController extends BaseAdminController
     public function addPost()
     {
         $info = [];
-        if (!empty($_POST)) {
-            $info = $_POST;
+        $data = $_POST ;
 
-            if (!empty($_POST['title']) && !empty($_POST['chapo']) && !empty($_POST['auteur']) && !empty($_FILES['file']['name'])) {
+        if (!empty($data)) {
+            $data = $_POST ;
+            $info = $data;
+
+            if (!empty($data['title']) && !empty($data['chapo']) && !empty($data['auteur']) && !empty($_FILES['file']['name'])) {
                 unset($_SESSION['error']);
 
                 // treatment of images
@@ -54,12 +57,12 @@ class AdminPostController extends BaseAdminController
                 $current->setTimezone($timeZone);
 
 
-                $post->setTitle($_POST['title'])
-                    ->setChapo($_POST['chapo'])
-                    ->setAuteur($_POST['auteur'])
-                    ->setContent($_POST['content'])
+                $post->setTitle($data['title'])
+                    ->setChapo($data['chapo'])
+                    ->setAuteur($data['auteur'])
+                    ->setContent($data['content'])
                     ->setImage($imgName)
-                    ->setIsPublished($_POST['isPublished'])
+                    ->setIsPublished($data['isPublished'])
                     ->setCreated_at($current->format('Y-m-d H:i:s'));
                 $this->postRepo->create('post', $post);
 
@@ -77,15 +80,16 @@ class AdminPostController extends BaseAdminController
     {
 
         $post = $this->postRepo->findBy('post', 'id', $arg);
+        $data = $_POST ;
 
-        if (!empty($_POST)) {
+        if (!empty($data)) {
 
             $timeZone = new DateTimeZone('Europe/Paris');
             $date = new DateTime();
             $date->setTimezone($timeZone);
             $d =  $date->format('Y-m-d H:i:s');
 
-            $postUpdate = $_POST;
+            $postUpdate = $data;
             $postUpdate['updated_at'] = $d;
 
             if (!empty($_FILES['file']['name'])) {

@@ -12,12 +12,13 @@ class RegistrationController extends MainController
     {
         unset($_SESSION['error']);
 
-        if (!empty($_POST)) {
+        $data = $_POST ;
+        if (!empty($data)) {
 
-            $name = htmlspecialchars($_POST['name']);
-            $firstName = htmlspecialchars($_POST["first_name"]);
-            $email = htmlspecialchars($_POST['email']);
-            $pass = htmlspecialchars($_POST['password']);
+            $name = htmlspecialchars($data['name']);
+            $firstName = htmlspecialchars($data["first_name"]);
+            $email = htmlspecialchars($data['email']);
+            $pass = htmlspecialchars($data['password']);
             $role = 'ROLE_USER';
             $file = $_FILES['file'];
 

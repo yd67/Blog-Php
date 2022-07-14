@@ -25,14 +25,14 @@ class Router
         $controller = $this->controller;
         $method = 'index';
         $arg = null;
-
+        $data = $_POST ;
 
         if (isset($_GET['path'])) {
             $param = explode('/', $_GET['path']);
         }
 
-        if (isset($_POST['path'])) {
-            $param = explode('/', $_POST['path']);
+        if (isset($data['path'])) {
+            $param = explode('/', $data['path']);
         }
 
         if (!empty($param[0])) {

@@ -41,7 +41,9 @@ class MainController
     public function redirect($path)
     {
         header('Location: index.php?path='.$path); 
-        die();
+
+        // top the script 
+        exit();
     }
 
 }

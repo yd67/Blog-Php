@@ -1,5 +1,6 @@
 # Blog en PHP  OpenClassrooms
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/0fc400826bb544bcad32bb16e2124125)](https://www.codacy.com/gh/yd67/Blog-Php/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yd67/Blog-Php&amp;utm_campaign=Badge_Grade)
+
 ![Logo](https://user.oc-static.com/upload/2016/11/17/1479381549985_shutterstock_385167373.jpg)
 ## Description du projet 
 Projet n°5 de la formation [Développeur d'application - PHP / Symfony](https://openclassrooms.com/fr/paths/500-developpeur-dapplication-php-symfony#path-tabs).

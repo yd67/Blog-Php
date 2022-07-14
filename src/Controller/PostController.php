@@ -38,10 +38,13 @@ class PostController extends MainController
 
     public function addComments()
     {
-        if ($_POST && !empty($_SESSION['user'])) {
+        $data = $_POST ;
+        $u = $_SESSION['user'] ;
 
-            $com = htmlspecialchars($_POST['comment']);
-            $postId = htmlspecialchars($_POST['postId']);
+        if ( !empty($data) && !empty($u)) {
+
+            $com = htmlspecialchars($data['comment']);
+            $postId = htmlspecialchars($data['postId']);
 
             $comment = new Comments();
 
@@ -52,7 +55,7 @@ class PostController extends MainController
             $comment->setPublished_at($date->format('Y-m-d H:i:s'))
                 ->setEtat(2)
                 ->setMessage($com)
-                ->setUser_id($_SESSION['user']['id'])
+                ->setUser_id($u['id'])
                 ->setPost_id($postId);;
 
             $this->commentsRepo->create('comments', $comment);

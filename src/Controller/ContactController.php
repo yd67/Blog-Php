@@ -17,20 +17,21 @@ class ContactController extends MainController
 
     public function sendContact()
     {
-        $_SESSION['contactInfo'] = $_POST;
+        $data = $_POST ;
+        $_SESSION['contactInfo'] = $data;
         unset($_SESSION['contactSuccess']);
         unset($_SESSION['contactError']);
 
-        if (empty($_POST['name'])) {
+        if (empty($data['name'])) {
             $_SESSION['contactError'] = 'veuillez renseigner un nom';
             $this->redirect('home#contact');
         }
 
-        if (empty($_POST['firstName'])) {
+        if (empty($data['firstName'])) {
             $_SESSION['contactError'] = 'veuillez renseigner un prénom';
             $this->redirect('home#contact');
         }
-        $m = strlen($_POST['message']);
+        $m = strlen($data['message']);
 
         if ($m <= 15) {
             $_SESSION['contactError'] = 'message trop court, le message doit comporter minimum 15 charactères';
@@ -38,17 +39,17 @@ class ContactController extends MainController
             $this->redirect('home#contact');
         }
 
-        if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        if (filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
 
-            $data = [
-                'name' => htmlspecialchars($_POST['name']),
-                'firstName' => htmlspecialchars($_POST['firstName']),
-                'email' => htmlspecialchars($_POST['email']),
-                'message' => htmlspecialchars($_POST['message']),
+            $dataMessage = [
+                'name' => htmlspecialchars($data['name']),
+                'firstName' => htmlspecialchars($data['firstName']),
+                'email' => htmlspecialchars($data['email']),
+                'message' => htmlspecialchars($data['message']),
             ];
 
             $mail = new Mailer;
-            $mail->send($data);
+            $mail->send($dataMessage);
 
             unset($_SESSION['contactInfo']);
             unset($_SESSION['contactError']);

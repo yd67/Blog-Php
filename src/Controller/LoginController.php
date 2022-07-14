@@ -10,11 +10,13 @@ class LoginController extends MainController
     {
         unset($_SESSION['error']);
 
-        if ($_POST) {
+        $data = $_POST ;
+
+        if (!empty($data)) {
             unset($_SESSION['success']);
             
-            $email = htmlspecialchars($_POST['email']);
-            $pass = htmlspecialchars($_POST['password']);
+            $email = htmlspecialchars($data['email']);
+            $pass = htmlspecialchars($data['password']);
             $_SESSION['info'] =  [
                 'email' => $email
             ];

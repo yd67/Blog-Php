@@ -26,7 +26,6 @@ class MainController
 
     public function index()
     {
-    
     }
 
     public function isAuth()
@@ -57,17 +56,9 @@ class MainController
 
     public function redirect($path)
     {
-<<<<<<< HEAD
-        header('Location: index.php?path='.$path); 
+        header('Location: index.php?path=' . $path);
 
         // top the script 
         exit();
-    }
-=======
->>>>>>> 0c0c971cd9b8ae7751e6830ae6af01d98066b1ca
-
-        header('Location: index.php?path=' . $path);
-        exit();
-
     }
 }

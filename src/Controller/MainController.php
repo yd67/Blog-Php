@@ -27,7 +27,6 @@ class MainController
     public function index()
     {
         
-        var_dump('le main controller');
     }
 
     public function page404()
@@ -42,7 +41,7 @@ class MainController
     public function redirect($path)
     {
         header('Location: index.php?path='.$path); 
-        exit();
+        die();
     }
 
 }

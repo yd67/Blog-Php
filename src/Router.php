@@ -4,7 +4,7 @@ namespace App;
 
 use App\Controller\MainController;
 
-class Router 
+class Router
 {
 
     /**
@@ -16,59 +16,51 @@ class Router
 
 
     /**
-     * la fonction 
+     * Gestion routing  
      *
      * @return void
      */
     public function route()
     {
-        $controller = $this->controller ;
+        $controller = $this->controller;
         $method = 'index';
-        $arg = null ;
-
-    //  var_dump($_SERVER['REQUEST_URI'],$_GET,$_POST);
+        $arg = null;
 
 
-        if (isset($_GET['path'])) {    
-           $param = explode('/',$_GET['path']) ;
+        if (isset($_GET['path'])) {
+            $param = explode('/', $_GET['path']);
         }
 
-        if (isset($_POST['path'])) {    
-            $param = explode('/',$_POST['path']) ;
-         }
+        if (isset($_POST['path'])) {
+            $param = explode('/', $_POST['path']);
+        }
 
         if (!empty($param[0])) {
-            $controller = 'App\Controller\\'.ucfirst($param[0].'Controller') ;
-            
+            $controller = 'App\Controller\\' . ucfirst($param[0] . 'Controller');
+
             // Test if the string contains the word "Admin"
-            $mot = "Admin" ;
-                if(strpos($controller, $mot) !== false){
-                    $controller = 'App\Controller\Admin\\'.ucfirst($param[0].'Controller') ;
-                }
-        }
-        
-        if (!empty($param[1])) {
-            if (method_exists($controller,$param[1])) { 
-              $method = $param[1];
+            $mot = "Admin";
+            if (strpos($controller, $mot) !== false) {
+                $controller = 'App\Controller\Admin\\' . ucfirst($param[0] . 'Controller');
             }
         }
-        
-        if (!empty($param[2])) {
-           $arg = $param[2] ;
-        } 
 
-        if (class_exists($controller)) {
-          //  var_dump($controller,$method,$arg);
-            $class = new $controller() ;
-            $class->$method($arg);
-
-        }else {
-           $class = new MainController ;
-          // var_dump($controller,$method,$arg);
-           $class->page404();
+        if (!empty($param[1])) {
+            if (method_exists($controller, $param[1])) {
+                $method = $param[1];
+            }
         }
 
+        if (!empty($param[2])) {
+            $arg = $param[2];
+        }
+
+        if (class_exists($controller)) {
+            $class = new $controller();
+            $class->$method($arg);
+        } else {
+            $class = new MainController;
+            $class->page404();
+        }
     }
-
-
 }

@@ -64,7 +64,12 @@ Dans le footer menu, il doit figurer un lien pour accéder à l’administration
   **Etape 3 : Changer les informations de  connexion a la base de données .** 
  
   ```http 
-  Src/DB/Database.php
+ chemin:  Src/DB/Database.php
+
+   $db_host = 'localhost';
+   $db_user = 'root' ;
+   $db_pass = '' ;
+   $db_name = '01Blogoc';
   ```
 
    **Etape 4 : Changer les informations de configuration pour l'envoie de mail .** 
@@ -73,9 +78,9 @@ Dans le footer menu, il doit figurer un lien pour accéder à l’administration
   Src/Mail/Mailer.php
   ```
 
-  **Etape 5 : Créer un vous un Compte , depuis votre base de données Changer votre role pour "ROLE_ADMIN" .**
+  **Etape 5 : Créer vous un Compte , depuis votre base de données Changer votre role pour "ROLE_ADMIN" .**
 
- 😄 Fin .
+ 😄 c'est terminer .
 
  
  

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin ;
 
+use Exception;
 use App\Controller\MainController;
 
 class BaseAdminController extends MainController
@@ -12,16 +13,14 @@ class BaseAdminController extends MainController
         parent::__construct() ;
 
         if (empty($_SESSION['user'])){    
-            echo('acces refuser') ;
 
-            // faire une redirection
-            die();
+            // redirection page 404
+            $this->redirect('404') ;
         }
         if ($_SESSION['user']['role'] != 'ROLE_ADMIN') {
-            echo('acces refuser pas le bon role');
             
-            // faire une redirection
-            die();
+            //  redirection page 404
+            $this->redirect('404') ;
         }
     }
 

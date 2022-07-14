@@ -12,6 +12,7 @@ class BaseAdminController extends MainController
     {
         parent::__construct();
 
+        $this->session = parent::getSession() ;
 
         if ($this->isAuth() === false) {
             $this->redirect('login');

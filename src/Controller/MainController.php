@@ -3,25 +3,41 @@
 namespace App\Controller;
 
 use App\Model\User;
+use App\Tools\Session;
+use App\Tools\superglobals;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
 class MainController
 {
-    private $loader;
+    protected $loader;
     protected $twig;
+    protected $session;
+    protected $global;
 
     public function __construct()
     {
-        $this->loader = new FilesystemLoader(ROOT . '/templates');
-        $this->twig = new Environment($this->loader, [
-            'debug' => true,
-            'cache' => false,
-        ]);
-        $this->twig->addExtension(new \Twig\Extension\DebugExtension());
+        if ($this->session === null) {
+            $this->session = new Session;
+        }
+        if ($this->global === null) {
+            $this->global = new superglobals;
+        }
 
-        $this->twig->addGlobal('session', $_SESSION);
-        $this->twig->addGlobal('url', ROOT);
+        if ($this->loader === null) {
+            $this->loader = new FilesystemLoader(ROOT . '/templates');
+        }
+
+        if ($this->twig === null) {
+            $this->twig = new Environment($this->loader, [
+                'debug' => true,
+                'cache' => false,
+            ]);
+            $this->twig->addExtension(new \Twig\Extension\DebugExtension());
+
+            $this->twig->addGlobal('session', $this->session->full());
+            $this->twig->addGlobal('url', ROOT);
+        }
     }
 
     public function index()
@@ -31,7 +47,7 @@ class MainController
     public function isAuth()
     {
         $auth = false;
-        if (!empty($_SESSION['user'])) {
+        if (!empty($this->session->get('user'))) {
             $auth = true;
         }
         return $auth;
@@ -40,11 +56,17 @@ class MainController
     public function isAdmin()
     {
         $admin = false;
+        $user = $this->session->get('user');
 
-        if ($_SESSION['user']['role'] === 'ROLE_ADMIN') {
+        if ($user['role'] === 'ROLE_ADMIN') {
             $admin = true;
         }
         return $admin;
+    }
+
+    public function getSession()
+    {
+        return $this->session ;
     }
 
 
@@ -56,9 +78,8 @@ class MainController
 
     public function redirect($path)
     {
+        
         header('Location: index.php?path=' . $path);
-
-        // top the script 
         exit();
     }
 }

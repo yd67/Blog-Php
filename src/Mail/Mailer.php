@@ -14,12 +14,8 @@ class Mailer
     {
         $this->mail = new PHPMailer(true);
         $this->mail->isSMTP();
-        $this->mail->Host = 'localhost';  // Spécifier le serveur SMTP
+        $this->mail->Host = 'localhost';  
         $this->mail->Port = 1025;
-        // $this->mail->SMTPAuth = true; // Activer authentication SMTP
-        // $this->mail->Username = 'user@votredomaine.com'; // Votre adresse email d'envoi
-        // $this->mail->Password = 'secret'; // Le mot de passe de cette adresse email
-        // $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Accepter SSL
     }
 
     public function send($data)

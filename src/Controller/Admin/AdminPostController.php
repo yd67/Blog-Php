@@ -11,10 +11,12 @@ class AdminPostController extends BaseAdminController
 {
 
     public $postRepo;
+    protected $session ;
 
     public function __construct()
     {
         parent::__construct();
+        $this->session = $this->session ;
 
         $this->postRepo = new PostRepository;
     }
@@ -22,6 +24,7 @@ class AdminPostController extends BaseAdminController
     public function index()
     {
         $posts = $this->postRepo->findAll();
+        var_dump($this->session);
 
         $this->twig->display('admin/post/index.html.twig', [
             'posts' => $posts
@@ -37,7 +40,9 @@ class AdminPostController extends BaseAdminController
             $data = $this->global->get_POST() ;
             $info = $data;
 
-            if (!empty($data['title']) && !empty($data['chapo']) && !empty($data['auteur']) && !empty($_FILES['file']['name'])) {
+            $file = $this->global->get_FILES('file');
+
+            if (!empty($data['title']) && !empty($data['chapo']) && !empty($data['auteur']) && !empty($_FILES['file'])) {
 
                 $this->session->remove('error');
 
@@ -68,9 +73,9 @@ class AdminPostController extends BaseAdminController
                 $this->postRepo->create('post', $post);
 
                 $this->redirect('adminPost');
-            } else {
-                $this->session->write('error','un ou plusieurs des champs obligatoires sont vide');
             }
+            $this->session->write('error','un ou plusieurs des champs obligatoires sont vide');  
+           
         }
         $this->twig->display('admin/post/addPost.html.twig', [
             'info' => $info,

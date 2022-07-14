@@ -64,6 +64,11 @@ class MainController
         return $admin;
     }
 
+    public function getSession()
+    {
+        return $this->session ;
+    }
+
 
     public function page404()
     {

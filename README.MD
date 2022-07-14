@@ -65,5 +65,7 @@ Dans le footer menu, il doit figurer un lien pour accéder à l’administration
    😄 c'est terminer .
 ## Auteur
    - [Darius Yvens ](https://github.com/yd67)
+
    [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.darius-yvens.com/)
+   
    [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://fr.linkedin.com/in/yvens-darius)

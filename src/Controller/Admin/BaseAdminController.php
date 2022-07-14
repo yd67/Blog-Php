@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Controller\Admin ;
+namespace App\Controller\Admin;
 
 use Exception;
 use App\Controller\MainController;
@@ -10,19 +10,16 @@ class BaseAdminController extends MainController
 
     public function __construct()
     {
-        parent::__construct() ;
+        parent::__construct();
 
-        if (empty($_SESSION['user'])){    
 
-            // redirection page 404
-            $this->redirect('404') ;
+        if ($this->isAuth() === false) {
+            $this->redirect('login');
         }
-        if ($_SESSION['user']['role'] != 'ROLE_ADMIN') {
-            
-            //  redirection page 404
-            $this->redirect('404') ;
+
+        if ($this->isAdmin() === false) {
+            $this->redirect('login');
+
         }
     }
-
-    
 }

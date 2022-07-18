@@ -8,6 +8,11 @@
     font-size: 22px;
     letter-spacing: 4px;
 }
+#blog{
+    background: url(../img/header-blog.jpg);
+    background-size: cover;
+}
+
 
 .meta-item {
     font-size: 12px;

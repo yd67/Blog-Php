@@ -44,7 +44,7 @@
 						<td scope="row">
 						    <a class="text-dark" href="index.php?path=post/details/{{p.id}}" target="_blank" ><i class="fa-solid fa-eye "></i></a> <br>
 						    <a class="" href="index.php?path=adminPost/updatePost/{{p.id}}"><i class="fa-solid fa-pen-to-square "></i></a> <br>
-							<a class=" text-danger" href="index.php?path=adminPost/deletePost/{{p.id}}"><i class="fa-solid fa-trash-can "></i></a>
+							<a class=" text-danger" href="index.php?path=adminPost/deletePost/{{p.id}}" onclick="return confirm('veuillez comfirmer la suppression ')"><i class="fa-solid fa-trash-can "></i></a>
 						</td>
 					{% endfor %}
 				</tr>
